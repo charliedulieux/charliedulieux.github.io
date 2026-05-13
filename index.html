@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Charlie Dulieux — Portfolio BTS SIO SISR</title>
+  <meta name="description" content="Portfolio de Charlie Dulieux, étudiant en BTS SIO option SISR. Projets, parcours, veille technologique et ressources." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* =========================================
+       VARIABLES & RESET
+       ========================================= */
+    :root {
+      --bg: #15100a;
+      --bg-soft: #1d1610;
+      --bg-card: #241b12;
+      --bg-card-hover: #2c2218;
+      --border: #3a2c1f;
+      --border-soft: #2a2018;
+      --orange: #FF7A1A;
+      --orange-soft: #ffa766;
+      --orange-deep: #d35f10;
+      --cream: #f5ede1;
+      --muted: #a89684;
+      --muted-soft: #7a6a5a;
+      --serif: 'Lora', Georgia, 'Times New Roman', serif;
+      --sans: 'Source Sans 3', -apple-system, system-ui, sans-serif;
+      --mono: 'JetBrains Mono', Consolas, monospace;
+      --max-width: 1200px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-weight: 400;
+      background: var(--bg);
+      color: var(--cream);
+      line-height: 1.7;
+      font-size: 16.5px;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(ellipse at top right, rgba(255, 122, 26, 0.08), transparent 60%),
+        radial-gradient(ellipse at bottom left, rgba(255, 122, 26, 0.04), transparent 50%);
+      z-index: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* =========================================
+       TYPOGRAPHY — Lora (serif lisible) + Source Sans 3
+       ========================================= */
+    h1, h2, h3, h4 {
+      font-family: var(--serif);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    h1 { font-size: clamp(2.6rem, 7vw, 5.5rem); font-weight: 700; }
+    h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
+    h3 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); }
+    h4 { font-size: 1.15rem; font-weight: 600; }
+
+    em {
+      font-style: italic;
+      color: var(--orange);
+      font-family: var(--serif);
+    }
+
+    .accent { color: var(--orange); }
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--orange);
+      font-weight: 500;
+    }
+
+    p { color: var(--cream); }
+
+    /* =========================================
+       LAYOUT
+       ========================================= */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .container-narrow {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* =========================================
+       HEADER & CENTERED HORIZONTAL NAV
+       ========================================= */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(21, 16, 10, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .header-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.85rem;
+      position: relative;
+    }
+
+    .brand {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cream);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+    }
+    .brand-mark {
+      width: 8px; height: 8px;
+      background: var(--orange);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--orange);
+    }
+
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.35rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-center a {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      padding: 0.55rem 1.05rem;
+      border-radius: 999px;
+      color: var(--muted);
+      transition: all 0.25s ease;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .nav-center a:hover { color: var(--cream); }
+    .nav-center a.active {
+      background: var(--orange);
+      color: #15100a;
+      font-weight: 600;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: var(--bg-card);
+      color: var(--cream);
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* =========================================
+       SPA SYSTEM
+       ========================================= */
+    main { position: relative; z-index: 1; }
+
+    .page { display: none; animation: pageIn 0.5s ease both; }
+    .page.active { display: block; }
+
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .section { padding: clamp(3rem, 7vw, 5rem) 0; }
+
+    /* =========================================
+       HERO
+       ========================================= */
+    .hero {
+      padding: clamp(3.5rem, 9vw, 7rem) 0 clamp(2.5rem, 5vw, 4rem);
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 3rem;
+      align-items: end;
+    }
+
+    .hero-title { margin-bottom: 1.5rem; }
+
+    .hero-tagline {
+      font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+      color: var(--cream);
+      max-width: 56ch;
+      line-height: 1.65;
+    }
+
+    .hero-photo {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 30px 60px -20px rgba(0,0,0,0.5);
+    }
+
+    .hero-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 60%, rgba(255, 122, 26, 0.1));
+      pointer-events: none;
+    }
+
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+    .photo-placeholder {
+      text-align: center;
+      padding: 1rem;
+      color: var(--muted-soft);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      line-height: 1.7;
+    }
+
+    .photo-placeholder strong {
+      display: block;
+      color: var(--orange);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    /* =========================================
+       BUTTONS
+       ========================================= */
+    .btn-row {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.4rem;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--cream);
+      border-radius: 999px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .btn:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: #15100a;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      background: var(--orange-soft);
+      border-color: var(--orange-soft);
+      color: #15100a;
+    }
+
+    .btn svg { transition: transform 0.25s ease; }
+    .btn:hover svg { transform: translateX(3px); }
+
+    /* =========================================
+       SECTIONS / CARDS
+       ========================================= */
+    .section-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .section-title h2 { max-width: 22ch; }
+    .section-title p { color: var(--muted); max-width: 40ch; }
+
+    /* =========================================
+       PROJECT BLOCK (with expand/collapse)
+       ========================================= */
+    .project {
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      border-radius: 8px;
+      padding: clamp(1.6rem, 3vw, 2.4rem);
+      margin-bottom: 1.5rem;
+      transition: border-color 0.25s ease;
+    }
+    .project:hover { border-color: var(--border); }
+
+    .project-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-meta {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    .project-title { margin-bottom: 0.4rem; }
+    .project-company {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--orange);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-context {
+      color: var(--cream);
+      margin-bottom: 1.2rem;
+      max-width: 75ch;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      padding: 0.3rem 0.7rem;
+      background: rgba(255, 122, 26, 0.08);
+      border: 1px solid rgba(255, 122, 26, 0.25);
+      color: var(--orange-soft);
+      border-radius: 999px;
+    }
+
+    .project-expand-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.2rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--cream);
+      border-radius: 999px;
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-weight: 500;
+    }
+
+    .project-expand-btn:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    .project-expand-btn .chev {
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+    .project.open .project-expand-btn .chev { transform: rotate(180deg); }
+
+    .project-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.3s ease, margin-top 0.3s ease;
+      opacity: 0;
+      margin-top: 0;
+    }
+    .project.open .project-details {
+      max-height: 5000px;
+      opacity: 1;
+      margin-top: 1.8rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .project-block { margin-bottom: 1.5rem; }
+    .project-block h4 {
+      color: var(--orange);
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-block ul { list-style: none; padding: 0; }
+    .project-block ul li {
+      padding-left: 1.3rem;
+      position: relative;
+      margin-bottom: 0.55rem;
+      color: var(--cream);
+    }
+    .project-block ul li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--orange);
+      font-family: var(--mono);
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    code.inline {
+      font-family: var(--mono);
+      color: var(--orange-soft);
+      background: rgba(255, 122, 26, 0.08);
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.88em;
+    }
+
+    /* =========================================
+       SKILLS GRID
+       ========================================= */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.7rem;
+      transition: border-color 0.25s ease;
+    }
+    .skill-card:hover { border-color: var(--orange-deep); }
+    .skill-card h4 {
+      color: var(--orange);
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .skill-card ul { list-style: none; padding: 0; }
+    .skill-card li {
+      padding: 0.35rem 0;
+      color: var(--cream);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .skill-card li::before {
+      content: "";
+      width: 5px; height: 5px;
+      background: var(--orange);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* =========================================
+       PARCOURS / TIMELINE
+       ========================================= */
+    .timeline-group { margin-bottom: 3rem; }
+    .timeline-group-title {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--orange);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.7rem;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      border-left: 1px solid var(--border);
+    }
+    .timeline-item {
+      padding-bottom: 2.2rem;
+      position: relative;
+    }
+    .timeline-item:last-child { padding-bottom: 0.5rem; }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -2.4rem;
+      top: 0.5rem;
+      width: 12px; height: 12px;
+      background: var(--orange);
+      border: 2px solid var(--bg);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(255, 122, 26, 0.15);
+    }
+    .timeline-date {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--orange);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-title {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .timeline-desc { color: var(--cream); }
+    .timeline-org {
+      display: block;
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .placeholder-box {
+      background: rgba(255, 122, 26, 0.05);
+      border: 1px dashed var(--orange-deep);
+      border-radius: 6px;
+      padding: 1.2rem 1.4rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+    .placeholder-box strong {
+      color: var(--orange);
+      font-weight: 600;
+    }
+
+    /* =========================================
+       VEILLE
+       ========================================= */
+    .veille-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+    .veille-card h3 {
+      color: var(--orange);
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .veille-card h4 {
+      color: var(--cream);
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 1.2rem 0 0.5rem;
+    }
+    .veille-card h4:first-child { margin-top: 0; }
+    .veille-card ul { padding-left: 1.5rem; margin: 0.5rem 0 0.5rem; }
+    .veille-card ul li {
+      padding-left: 0.3rem;
+      margin-bottom: 0.4rem;
+      color: var(--cream);
+    }
+    .veille-card ul li::marker { color: var(--orange); }
+
+    .chrono-item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 1.2rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .chrono-item:last-child { border-bottom: none; }
+    .chrono-date {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--orange);
+      letter-spacing: 0.04em;
+      padding-top: 0.15rem;
+    }
+    .chrono-body h5 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 0.3rem;
+    }
+    .chrono-body p {
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+    .chrono-body a {
+      color: var(--orange-soft);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .chrono-body a:hover { border-color: var(--orange-soft); }
+
+    /* =========================================
+       RESOURCES
+       ========================================= */
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .resource-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .resource-card:hover {
+      border-color: var(--orange);
+      transform: translateY(-2px);
+    }
+    .resource-icon {
+      width: 38px; height: 38px;
+      background: rgba(255, 122, 26, 0.12);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--orange);
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+    .resource-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--cream);
+    }
+    .resource-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      flex-grow: 1;
+    }
+    .resource-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.4rem;
+    }
+    .resource-actions .btn {
+      padding: 0.55rem 1rem;
+      font-size: 0.8rem;
+    }
+
+    /* =========================================
+       CONTACT
+       ========================================= */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: all 0.25s ease;
+    }
+    .contact-card:hover {
+      border-color: var(--orange);
+      transform: translateY(-3px);
+    }
+    .contact-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .contact-value {
+      font-family: var(--sans);
+      font-size: 1.02rem;
+      color: var(--cream);
+      font-weight: 500;
+    }
+
+    /* =========================================
+       FOOTER
+       ========================================= */
+    .site-footer {
+      border-top: 1px solid var(--border-soft);
+      padding: 1.8rem 1.5rem;
+      margin-top: 3rem;
+    }
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* =========================================
+       UTILS
+       ========================================= */
+    .reveal { opacity: 0; transform: translateY(16px); transition: all 0.7s cubic-bezier(.2,.7,.2,1); }
+    .page.active .reveal { opacity: 1; transform: none; }
+    .page.active .reveal[data-delay="1"] { transition-delay: 0.1s; }
+    .page.active .reveal[data-delay="2"] { transition-delay: 0.2s; }
+    .page.active .reveal[data-delay="3"] { transition-delay: 0.3s; }
+
+    .lead {
+      font-size: 1.1rem;
+      color: var(--cream);
+      max-width: 65ch;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    /* =========================================
+       RESPONSIVE
+       ========================================= */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-photo { max-width: 280px; margin: 0 auto; }
+      .project-head { grid-template-columns: 1fr; }
+      .project-meta { text-align: left; }
+      .chrono-item { grid-template-columns: 1fr; gap: 0.4rem; }
+      .nav-center {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: column;
+        align-items: stretch;
+        margin-top: 0.6rem;
+        padding: 0.6rem;
+        border-radius: 12px;
+        display: none;
+        min-width: 230px;
+        background: var(--bg-soft);
+        z-index: 100;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+      }
+      .nav-center.open { display: flex; }
+      .nav-center a { text-align: center; padding: 0.75rem 1rem; }
+      .nav-toggle { display: inline-flex; }
+      .header-inner {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" data-route="accueil" href="#accueil">
+        <span class="brand-mark"></span>
+        <span>CHARLIE&nbsp;DULIEUX</span>
+      </a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M0 1h20M0 7h20M0 13h20"/>
+        </svg>
+      </button>
+      <nav class="nav-center" aria-label="Navigation principale">
+        <a href="#accueil" data-route="accueil">Accueil</a>
+        <a href="#parcours" data-route="parcours">Parcours</a>
+        <a href="#projets" data-route="projets">Projets</a>
+        <a href="#competences" data-route="competences">Compétences</a>
+        <a href="#veille" data-route="veille">Veille</a>
+        <a href="#ressources" data-route="ressources">Ressources</a>
+        <a href="#contact" data-route="contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =========================================
+         PAGE — ACCUEIL
+         ========================================= -->
+    <section class="page" data-page="accueil">
+      <div class="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div>
+              <p class="eyebrow reveal" style="margin-bottom: 1.5rem;">BTS SIO · Option SISR · Promotion 2026</p>
+              <h1 class="hero-title reveal" data-delay="1">
+                Charlie<br>
+                Dulieux<span class="accent">.</span>
+              </h1>
+              <p class="hero-tagline reveal" data-delay="2">
+                Étudiant en deuxième année de <em>BTS Services Informatiques aux Organisations</em>, je conçois et déploie des solutions d'<strong>infrastructure systèmes &amp; réseaux</strong>. Stockage, accès distant sécurisé, gestion des droits — j'aime les architectures qui tiennent debout.
+              </p>
+              <div class="btn-row reveal" data-delay="3" style="margin-top: 2rem;">
+                <span class="btn" style="border-color: var(--border-soft); color: var(--muted); pointer-events: none;">
+                  ↑ Naviguez avec le menu en haut
+                </span>
+              </div>
+            </div>
+
+            <div class="hero-photo reveal" data-delay="2">
+              <!-- ====== EMPLACEMENT PHOTO ======
+                   Pour ajouter ta photo, remplace ce bloc par :
+                   <img src="ma-photo.jpg" alt="Charlie Dulieux">
+                   et place ma-photo.jpg dans le même dossier.
+              -->
+              <div class="photo-placeholder">
+                <strong>★ PHOTO</strong>
+                Remplace ce bloc par :<br>
+                &lt;img src="ma-photo.jpg"&gt;<br><br>
+                (la photo n'a pas été<br>
+                reçue dans l'upload)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container-narrow">
+          <p class="lead reveal">
+            Au cours de mon BTS, j'ai eu la chance d'aborder l'informatique sous deux angles très différents : la <em>gestion d'un parc client en entreprise</em> chez SCLE, puis la <em>conception complète d'une solution d'infrastructure</em> chez Détours en Cinécourt — où j'ai mis en place un NAS accessible depuis Internet, chiffré, et avec des droits cloisonnés.
+          </p>
+          <p class="lead reveal" data-delay="1">
+            Mes terrains de jeu préférés : Linux (Debian, Ubuntu), les services réseau (SSH, FTPS, DDNS), la gestion fine des droits (ACL, PAM), la virtualisation et la cybersécurité.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         PAGE — PARCOURS
+         ========================================= -->
+    <section class="page" data-page="parcours">
+      <div class="hero" style="padding-bottom: 1.5rem;">
+        <div class="container">
+          <p class="eyebrow reveal" style="margin-bottom: 1.5rem;">Page 02 — Parcours</p>
+          <h1 class="hero-title reveal" data-delay="1" style="font-size: clamp(2.4rem, 7vw, 4.8rem);">
+            Une trajectoire<br><em>technique</em>.
+          </h1>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container-narrow">
+
+          <!-- ========== PARCOURS SCOLAIRE ========== -->
+          <div class="timeline-group reveal">
+            <h2 class="timeline-group-title">★ Parcours scolaire</h2>
+            <div class="timeline">
+
+              <div class="timeline-item">
+                <div class="timeline-date">2024 — 2026 (en cours)</div>
+                <div class="timeline-title">BTS SIO — option SISR</div>
+                <span class="timeline-org">Lycée Henry Matisse · Cugnaux</span>
+                <div class="timeline-desc">
+                  Brevet de Technicien Supérieur · Services Informatiques aux Organisations · Solutions d'Infrastructure, Systèmes et Réseaux. Formation centrée sur l'administration Linux/Windows, les réseaux, la virtualisation et la cybersécurité.
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-date">2023 — 2024</div>
+                <div class="timeline-title">BUT Informatique</div>
+                <span class="timeline-org">Université Paul Sabatier · Toulouse</span>
+                <div class="timeline-desc">
+                  Première année de BUT Informatique : programmation, bases de données, mathématiques pour l'informatique, fondamentaux des systèmes et des réseaux.
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-date">2020 — 2023</div>
+                <div class="timeline-title">Baccalauréat STI2D</div>
+                <span class="timeline-org">Lycée Stéphane Hessel · Toulouse</span>
+                <div class="timeline-desc">
+                  Sciences et Technologies de l'Industrie et du Développement Durable. Premier contact avec le développement, les systèmes d'exploitation et l'architecture matérielle.
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ========== STAGES ========== -->
+          <div class="timeline-group reveal" data-delay="1">
+            <h2 class="timeline-group-title">★ Stages</h2>
+            <div class="timeline">
+
+              <div class="timeline-item">
+                <div class="timeline-date">Janv. — Févr. 2026 · 6 semaines</div>
+                <div class="timeline-title">Stage 2<sup>e</sup> année — Mise en place d'un NAS</div>
+                <span class="timeline-org">Détours en Cinécourt · Saint-Geniès-Bellevue (31) · Tuteur : Julien Grenaille</span>
+                <div class="timeline-desc">
+                  Mise en place d'un NAS sous OpenMediaVault accessible depuis l'extérieur : DDNS, SSH sur port non standard, FTPS chiffré, RAID 0 logiciel et droits différenciés via ACL.
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-date">Mai — Juin 2025 · ~5 semaines</div>
+                <div class="timeline-title">Stage 1<sup>re</sup> année — Gestion de parc</div>
+                <span class="timeline-org">SCLE</span>
+                <div class="timeline-desc">
+                  Inventaire du parc et du matériel au rebut, dépannage et réparation de postes, ticketing GLPI, installation de postes clients (Windows 11, drivers, Ghost). Travail personnel autour de l'audit Linux (Auditd, Cron, PAM, scripts Bash).
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ========== EXPÉRIENCES PRO ========== -->
+          <div class="timeline-group reveal" data-delay="2">
+            <h2 class="timeline-group-title">★ Expériences professionnelles</h2>
+            <div class="timeline">
+
+              <div class="timeline-item">
+                <div class="timeline-date">Juillet 2025</div>
+                <div class="timeline-title">Serveur</div>
+                <span class="timeline-org">Crêperie de Monta · Montalivet-les-Bains</span>
+                <div class="timeline-desc">
+                  Service en salle pendant la saison estivale : accueil clients, prise de commandes, gestion d'un rythme intense en station balnéaire.
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-date">Juillet — Août 2024</div>
+                <div class="timeline-title">Serveur</div>
+                <span class="timeline-org">Crêperie de Monta · Montalivet-les-Bains</span>
+                <div class="timeline-desc">
+                  Première saison comme serveur, reconduite l'année suivante.
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-date">Juillet — Août 2023</div>
+                <div class="timeline-title">Agent de nettoyage</div>
+                <span class="timeline-org">La Conciergerie Médoc Océan · Montalivet-les-Bains</span>
+                <div class="timeline-desc">
+                  Entretien des logements saisonniers entre deux locations : rigueur, autonomie et respect d'un cahier des charges précis.
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-date">Juillet — Août 2022</div>
+                <div class="timeline-title">Plongeur</div>
+                <span class="timeline-org">Le Gaïa · Montalivet-les-Bains</span>
+                <div class="timeline-desc">
+                  Premier emploi saisonnier en restauration : organisation, résistance au rythme et travail en équipe dans un environnement exigeant.
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         PAGE — PROJETS
+         ========================================= -->
+    <section class="page" data-page="projets">
+      <div class="hero" style="padding-bottom: 1.5rem;">
+        <div class="container">
+          <p class="eyebrow reveal" style="margin-bottom: 1.5rem;">Page 03 — Projets</p>
+          <h1 class="hero-title reveal" data-delay="1" style="font-size: clamp(2.4rem, 7vw, 4.8rem);">
+            Du parc client<br>à <em>l'infrastructure</em>.
+          </h1>
+          <p class="hero-tagline reveal" data-delay="2" style="margin-top: 1.5rem;">
+            Chaque projet affiche son contexte. Pour voir les détails techniques, les difficultés rencontrées et les ressources, clique sur <em>« Voir les détails »</em>.
+          </p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+
+          <!-- ========== PROJET — DÉTOURS EN CINÉCOURT ========== -->
+          <article class="project reveal">
+            <div class="project-head">
+              <div>
+                <p class="project-company">★ Stage 2ᵉ année · Mission principale</p>
+                <h3 class="project-title">Mise en place d'un NAS accessible depuis l'extérieur</h3>
+              </div>
+              <div class="project-meta">
+                12 Janv. → 20 Févr. 2026<br>
+                6 semaines<br>
+                Détours en Cinécourt
+              </div>
+            </div>
+
+            <p class="project-context">
+              L'association reçoit chaque année plus de 1&nbsp;000 courts-métrages pour son festival. Stockage limité, accès distant compliqué pour les bénévoles dispersés, et aucun cloisonnement des droits — j'ai conçu et déployé une solution NAS complète pour résoudre les trois problèmes en même temps.
+            </p>
+
+            <div class="project-tags">
+              <span class="tag">OpenMediaVault</span>
+              <span class="tag">Debian 13</span>
+              <span class="tag">ProFTPD</span>
+              <span class="tag">Docker</span>
+              <span class="tag">mdadm RAID 0</span>
+              <span class="tag">ACL POSIX</span>
+              <span class="tag">DDNS</span>
+              <span class="tag">FTPS / TLS</span>
+            </div>
+
+            <button class="project-expand-btn" data-toggle="project">
+              Voir les détails <span class="chev">▾</span>
+            </button>
+
+            <div class="project-details">
+
+              <div class="project-block">
+                <h4>Réalisations techniques</h4>
+                <ul>
+                  <li><strong>DNS dynamique (DDNS)</strong> via NoIP — nom de domaine stable <code class="inline">detoursomv.serveftp.com</code> mis à jour automatiquement par un client Docker (toutes les 30 min).</li>
+                  <li><strong>Accès SSH sécurisé</strong> sur port non standard (32770), avec utilisateur dédié <code class="inline">omvssh</code> et redirection NAT côté Freebox.</li>
+                  <li><strong>Serveur FTPS</strong> via ProFTPD avec certificat SSL auto-signé 4096 bits, mode passif (ports 49152–65534) et chiffrement TLS forcé.</li>
+                  <li><strong>RAID 0 logiciel</strong> avec <code class="inline">mdadm</code> sur 2×3,6 To → volume unique de 7,3 To formaté en ext4.</li>
+                  <li><strong>Droits différenciés via ACL POSIX</strong> : groupe <em>read</em> en lecture seule (bénévoles visionneurs) et groupe <em>writeread</em> en lecture/écriture (membres ajoutant les films).</li>
+                  <li><strong>Configuration Freebox</strong> : redirections de ports, DMZ provisoire pour les tests, déclaration du nom de domaine.</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <h4>Difficultés rencontrées &amp; résolutions</h4>
+                <ul>
+                  <li>Erreur <code class="inline">wrong fs type, bad option</code> au montage du RAID — formatage ext4 explicite.</li>
+                  <li>Permissions Docker manquantes pour <code class="inline">omvssh</code> — ajout au groupe <code class="inline">docker</code>.</li>
+                  <li>Fichier <code class="inline">no-ip2.conf</code> hors du chemin attendu — localisation via <code class="inline">find /</code> et déplacement manuel.</li>
+                </ul>
+              </div>
+
+              <div class="project-actions">
+                <a class="btn btn-primary" href="Rapport_de_stage_Detours_en_Cinecourt.pdf" target="_blank" rel="noopener">
+                  Voir le rapport complet
+                  <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 5h12M9 1l4 4-4 4"/></svg>
+                </a>
+                <a class="btn" href="Rapport_de_stage_Detours_en_Cinecourt.pdf" download>
+                  ↓ Télécharger PDF (870 Ko)
+                </a>
+              </div>
+
+            </div>
+          </article>
+
+          <!-- ========== PROJET — SCLE ========== -->
+          <article class="project reveal" data-delay="1">
+            <div class="project-head">
+              <div>
+                <p class="project-company">★ Stage 1ʳᵉ année · Gestion de parc</p>
+                <h3 class="project-title">Gestion de parc, dépannage et administration Linux</h3>
+              </div>
+              <div class="project-meta">
+                Mai → Juin 2025<br>
+                ~5 semaines<br>
+                SCLE
+              </div>
+            </div>
+
+            <p class="project-context">
+              Découverte du métier d'administrateur de parc en environnement entreprise : prise en main du matériel client, gestion du cycle de vie des postes (installation, maintenance, retrait du parc), et travail personnel approfondi sur l'administration Linux pour consolider les acquis du référentiel SISR.
+            </p>
+
+            <div class="project-tags">
+              <span class="tag">Windows 11</span>
+              <span class="tag">VMware</span>
+              <span class="tag">GLPI</span>
+              <span class="tag">Ghost</span>
+              <span class="tag">Auditd</span>
+              <span class="tag">Cron</span>
+              <span class="tag">PAM</span>
+              <span class="tag">Bash</span>
+              <span class="tag">Brassage RJ-45</span>
+            </div>
+
+            <button class="project-expand-btn" data-toggle="project">
+              Voir les détails <span class="chev">▾</span>
+            </button>
+
+            <div class="project-details">
+
+              <div class="project-block">
+                <h4>Inventaire &amp; gestion du matériel au rebut</h4>
+                <ul>
+                  <li>Inventaire complet du matériel au rebut, vérification du fonctionnement et identification des composants embarqués (RAM, SSD/HDD, ports, cartes filles).</li>
+                  <li>Démontage de PC hors-réseau pour récupération de pièces fonctionnelles : RAM, disques, batteries, claviers, pavés tactiles, ports USB.</li>
+                  <li>Blacklistage des machines en fin de vie sur le serveur d'entreprise après retrait des données.</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <h4>Dépannage &amp; installation de postes clients</h4>
+                <ul>
+                  <li>Préparation de postes Windows 11 par image ISO depuis clé USB : configuration BIOS, application d'un Ghost (image disque pré-configurée).</li>
+                  <li>Migration de postes Windows 7 → Windows 10, installation de VMware et import de VM clientes.</li>
+                  <li>Mise à niveau RAM (8 Go → 16 Go) sur plusieurs lots de postes avant livraison.</li>
+                  <li>Résolution d'incidents : erreur <code class="inline">0xc1900201</code> (partition EFI saturée), configuration d'un convertisseur série Moxa UPort 1100, remplacement de clavier sur PC portable sans perte de données BitLocker.</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <h4>Ticketing GLPI &amp; comptes utilisateurs</h4>
+                <ul>
+                  <li>Traitement de tickets GLPI : création/suppression de comptes employés, attribution de droits sur des groupes Linux, installations à distance encadrées.</li>
+                  <li>Brassage réseau : câbles RJ-45 sur panneau de brassage, identification des ports Ethernet en salle, raccordement au switch.</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <h4>Travail personnel — Administration Linux avancée</h4>
+                <ul>
+                  <li><strong>Auditd</strong> : surveillance de <code class="inline">/home/srv/projets</code>, règles persistantes via <code class="inline">/etc/audit/rules.d/regle.rules</code>.</li>
+                  <li><strong>Cron</strong> : tâche planifiée copiant un fichier toutes les heures avec redirection des logs.</li>
+                  <li><strong>PAM</strong> : restriction d'accès horaire (8h-14h, lundi-vendredi) pour le groupe <em>interns</em>, en login local ET en SSH.</li>
+                  <li><strong>Bash</strong> : script de lecture d'un fichier texte avec numérotation et gestion d'erreur.</li>
+                </ul>
+              </div>
+
+              <div class="project-actions">
+                <a class="btn btn-primary" href="STAGE_BTS_SIO_1er_année.pdf" target="_blank" rel="noopener">
+                  Voir le journal de stage
+                  <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 5h12M9 1l4 4-4 4"/></svg>
+                </a>
+                <a class="btn" href="STAGE_BTS_SIO_1er_année.pdf" download>
+                  ↓ Télécharger PDF (232 Ko)
+                </a>
+              </div>
+
+            </div>
+          </article>
+
+          <!-- ========== PROJET — THE DISCO OVER (Bar) ========== -->
+          <article class="project reveal" data-delay="2">
+            <div class="project-head">
+              <div>
+                <p class="project-company">★ Projet personnel · Web design</p>
+                <h3 class="project-title">The Disco Over — Site d'un bar à thème</h3>
+              </div>
+              <div class="project-meta">
+                2024<br>
+                HTML / CSS<br>
+                Projet individuel
+              </div>
+            </div>
+
+            <p class="project-context">
+              Création complète d'un site vitrine pour un bar dansant à thème fictif, <em>The Disco Over</em>. Quatre pages reliées par une navigation commune, une charte graphique violet / orange / crème pensée pour évoquer l'univers disco et techno, et un formulaire de contact. Premier projet web mené de bout en bout, du brief graphique au rendu HTML/CSS.
+            </p>
+
+            <div class="project-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">Charte graphique</span>
+              <span class="tag">Navigation multi-pages</span>
+              <span class="tag">Formulaires</span>
+            </div>
+
+            <button class="project-expand-btn" data-toggle="project">
+              Voir les détails <span class="chev">▾</span>
+            </button>
+
+            <div class="project-details">
+
+              <div class="project-block">
+                <h4>Structure du site</h4>
+                <ul>
+                  <li><strong>Page d'accueil</strong> — présentation du bar avec logo, horaires d'ouverture (lundi-mercredi 18h-00h, jeudi 16h-02h, vendredi-samedi 15h-02h, dimanche fermé).</li>
+                  <li><strong>Concept du bar</strong> — page thématique : bar dansant à thème avec guinguettes, soirées déguisées, concerts et événements musicaux (house, tech house, techno, hard techno).</li>
+                  <li><strong>Carte</strong> — tableau des cocktails (Jäger Bomb, Daiquiri, Cosmopolitan…) avec tarification classique <em>et</em> tarification Happy Hour.</li>
+                  <li><strong>Formulaire</strong> — page de contact avec champs nom, prénom, email et vérification de majorité par boutons radio.</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <h4>Charte graphique</h4>
+                <ul>
+                  <li>Couleur principale : <strong style="color:#b25ddd">violet #b25ddd</strong> (ambiance club).</li>
+                  <li>Couleurs secondaires : blanc #ffffff, orange #f69d3c, beige clair #ffe8d4.</li>
+                  <li>Ombres : <code class="inline">rgba(0,0,0,0.4)</code> et <code class="inline">rgba(0,0,0,0.2)</code> pour la profondeur.</li>
+                  <li>Police : Arial, lisible et neutre pour laisser parler les couleurs.</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <h4>Apports pédagogiques</h4>
+                <ul>
+                  <li>Structurer un site multi-pages avec navigation cohérente.</li>
+                  <li>Séparer la structure (HTML) de la présentation (CSS) avec une feuille de style par page.</li>
+                  <li>Mettre en pratique les éléments sémantiques (<code class="inline">nav</code>, <code class="inline">table</code>, <code class="inline">form</code>, <code class="inline">fieldset</code>).</li>
+                </ul>
+              </div>
+
+              <div class="project-actions">
+                <a class="btn btn-primary" href="Bar.zip" download>
+                  ↓ Télécharger le projet (377 Ko)
+                </a>
+              </div>
+
+            </div>
+          </article>
+
+          <!-- ========== PROJET — PRESTASHOP ========== -->
+          <article class="project reveal" data-delay="3">
+            <div class="project-head">
+              <div>
+                <p class="project-company">★ Projet de groupe · E-commerce</p>
+                <h3 class="project-title">Boutique Prestashop — Accessoires de smartphone</h3>
+              </div>
+              <div class="project-meta">
+                2025<br>
+                Prestashop / SEO<br>
+                Binôme (avec Safouan)
+              </div>
+            </div>
+
+            <p class="project-context">
+              À partir d'un cahier des charges fourni (site e-commerce <em>Vino Tolosa</em>), notre binôme a conçu une boutique en ligne complète sous Prestashop. Le thème retenu : <em>accessoires pour smartphones</em>. Le projet couvre toute la chaîne d'un site marchand — rédaction du cahier des charges, charte graphique, architecture, catalogue produits et référencement SEO — en quatre séances structurées.
+            </p>
+
+            <div class="project-tags">
+              <span class="tag">Prestashop</span>
+              <span class="tag">E-commerce</span>
+              <span class="tag">SEO</span>
+              <span class="tag">Charte graphique</span>
+              <span class="tag">Cahier des charges</span>
+              <span class="tag">Travail en binôme</span>
+            </div>
+
+            <button class="project-expand-btn" data-toggle="project">
+              Voir les détails <span class="chev">▾</span>
+            </button>
+
+            <div class="project-details">
+
+              <div class="project-block">
+                <h4>Déroulé du projet (4 séances)</h4>
+                <ul>
+                  <li><strong>Séance 1</strong> — Rédaction du cahier des charges et choix d'un thème Prestashop gratuit adapté.</li>
+                  <li><strong>Séance 2</strong> — Élaboration de la charte graphique et constitution du dossier de candidature (présentation de l'équipe, choix techniques, devis, difficultés anticipées).</li>
+                  <li><strong>Séance 3</strong> — Mise en place de l'architecture du site, création des catégories et d'un premier produit par catégorie.</li>
+                  <li><strong>Séance 4</strong> — Enrichissement du catalogue avec de nouveaux produits et améliorations ergonomiques.</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <h4>Présentation fictive de la société (livrable de candidature)</h4>
+                <ul>
+                  <li>Équipe constituée : CEO &amp; cofondateur, directrice créative, responsable marketing &amp; partenariats, responsable production, service client.</li>
+                  <li>Domaines d'expertise affichés : conception &amp; design d'accessoires personnalisés, service client de qualité, innovation technologique.</li>
+                  <li>Devis détaillé séparant les prestations maquettage, design et marketing.</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <h4>Référencement SEO étudié</h4>
+                <ul>
+                  <li>Mise en place d'une <em>« machine à contenu »</em> : actualités, articles d'expertise, support / documentation, blog.</li>
+                  <li>Architecture cohérente avec linking interne (silos SEO) pour regrouper les contenus par thème.</li>
+                  <li>Étude des bonnes pratiques de structuration d'URL et de hiérarchie de pages.</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <h4>Apports pédagogiques</h4>
+                <ul>
+                  <li>Comprendre la <strong>chaîne complète</strong> d'un projet e-commerce : du cahier des charges à la mise en ligne.</li>
+                  <li>Configurer un CMS e-commerce (Prestashop) : back-office, catégories, fiches produits, thème.</li>
+                  <li>Travailler en équipe : partage des rôles, planning sur plusieurs séances, livrables intermédiaires.</li>
+                </ul>
+              </div>
+
+              <div class="project-actions">
+                <a class="btn btn-primary" href="Prestashop.zip" download>
+                  ↓ Télécharger les livrables (394 Ko)
+                </a>
+              </div>
+
+            </div>
+          </article>
+
+          <!-- ========== PROJET — GLPI ========== -->
+          <article class="project reveal">
+            <div class="project-head">
+              <div>
+                <p class="project-company">★ Travaux pratiques · Administration de parc</p>
+                <h3 class="project-title">Mise en pratique de GLPI — Inventaire, agent automatique &amp; ticketing</h3>
+              </div>
+              <div class="project-meta">
+                2025<br>
+                GLPI / VM / TP<br>
+                Projet pédagogique
+              </div>
+            </div>
+
+            <p class="project-context">
+              Trois activités pratiques menées en BTS SIO pour prendre en main <strong>GLPI</strong>, l'outil libre de gestion de parc informatique le plus répandu en entreprise. Couvre l'ensemble du cycle d'administration : <em>création d'un inventaire matériel et logiciel</em>, <em>automatisation via l'agent GLPI</em>, et <em>gestion complète d'un workflow de tickets</em> (de la création à la clôture).
+            </p>
+
+            <div class="project-tags">
+              <span class="tag">GLPI</span>
+              <span class="tag">Inventaire de parc</span>
+              <span class="tag">Agent GLPI</span>
+              <span class="tag">Ticketing helpdesk</span>
+              <span class="tag">Plan de nommage</span>
+              <span class="tag">VirtualBox</span>
+              <span class="tag">Redirection de ports</span>
+            </div>
+
+            <button class="project-expand-btn" data-toggle="project">
+              Voir les détails <span class="chev">▾</span>
+            </button>
+
+            <div class="project-details">
+
+              <div class="project-block">
+                <h4>ACT 1 — Bases : créer son inventaire</h4>
+                <ul>
+                  <li>Création de la base d'inventaire : ajout de <strong>2 lieux</strong> (Cugnaux, Toulouse), <strong>3 fabricants</strong> (Asus, Dell, HP) et <strong>3 statuts</strong> (En service, HS, Neuf).</li>
+                  <li>Géolocalisation des sites sur la carte de GLPI (initialement positionnée en plein milieu de l'océan, recadrée sur l'agglomération toulousaine).</li>
+                  <li>Filtrage des PC par lieu, fabricant et service via la recherche multi-critères.</li>
+                  <li>Création d'une fiche logiciel (Word de Microsoft, version 16.0) avec suivi des installations et des licences.</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <h4>ACT 2 — Inventaire automatique via l'agent GLPI</h4>
+                <ul>
+                  <li>Constat de départ : un inventaire manuel (Virtual Box 7.0.10, Visual Studio 1.96.2, PacketTracer 8.2.2, Discord, Wamp 3.3.5) prend déjà <strong>~30 min pour un seul PC</strong> — impossible à grande échelle.</li>
+                  <li>Configuration d'une <strong>redirection de ports</strong> dans VirtualBox (IP hôte vers IP invitée, port 9980 → 80) pour permettre à la VM de joindre le serveur GLPI.</li>
+                  <li>Modification du fichier <code class="inline">agent.cfg</code> pour pointer vers <code class="inline">http://192.168.1.151:9980/glpi/front/inventory.php</code>.</li>
+                  <li>Lancement de <code class="inline">glpi-agent.bat</code> et remontée automatique de l'inventaire : nom du logiciel, éditeur, version, nombre d'installations, nombre de licences. <strong>247 logiciels et 45 composants</strong> détectés sur un seul PC portable HP.</li>
+                  <li>Création de <strong>règles de filtrage</strong> (exemple : exclure Notepad++ des inventaires).</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <h4>ACT 3 — Tickets &amp; helpdesk</h4>
+                <ul>
+                  <li>Définition d'un <strong>plan de nommage</strong> structuré : <code class="inline">LIEU-POSTE-NUMÉRO</code> (ex : TL-MA-01 pour un poste Manager à Toulouse, CU-VE-02 pour un poste Vendeur à Cugnaux).</li>
+                  <li>Création de tickets côté utilisateur : <em>« Blue screen 2 fois par jour »</em>, <em>« Manque d'internet depuis 3h »</em> — avec catégorisation (urgence, impact, priorité).</li>
+                  <li>Prise en charge côté technicien : suivi du ticket, demande de capture d'écran à l'utilisateur, transmission de la commande de réparation (<code class="inline">route delete 0.0.0.0</code> puis <code class="inline">route add 0.0.0.0 mask 0.0.0.0</code>).</li>
+                  <li>Validation par l'utilisateur, clôture du ticket et suivi statistique côté observateur (Sylvie/Dominique).</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <h4>Apports pédagogiques</h4>
+                <ul>
+                  <li>Comprendre la <strong>logique complète d'un outil ITSM</strong> (Information Technology Service Management) du monde réel.</li>
+                  <li>Mesurer concrètement l'apport de l'automatisation (un agent vs 30 min manuelles par poste).</li>
+                  <li>Adopter une démarche de support utilisateur structurée : qualification, diagnostic, résolution, validation.</li>
+                  <li>Penser en amont un <strong>plan de nommage cohérent</strong>, indispensable pour s'y retrouver sur un parc de plusieurs centaines de postes.</li>
+                </ul>
+              </div>
+
+              <div class="project-actions">
+                <a class="btn btn-primary" href="GLPI_-_Charlie_DULIEUX.pdf" target="_blank" rel="noopener">
+                  Voir le document complet
+                  <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 5h12M9 1l4 4-4 4"/></svg>
+                </a>
+                <a class="btn" href="GLPI_-_Charlie_DULIEUX.pdf" download>
+                  ↓ Télécharger PDF (1,3 Mo)
+                </a>
+              </div>
+
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         PAGE — COMPÉTENCES
+         ========================================= -->
+    <section class="page" data-page="competences">
+      <div class="hero" style="padding-bottom: 1.5rem;">
+        <div class="container">
+          <p class="eyebrow reveal" style="margin-bottom: 1.5rem;">Page 04 — Compétences</p>
+          <h1 class="hero-title reveal" data-delay="1" style="font-size: clamp(2.4rem, 7vw, 4.8rem);">
+            Mes <em>terrains</em><br>de jeu.
+          </h1>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+
+          <!-- ========== CERTIFICATIONS ========== -->
+          <h2 style="margin-bottom: 1.5rem;" class="reveal">Diplômes &amp; certifications</h2>
+          <div class="skills-grid" style="margin-bottom: 3.5rem;">
+            <div class="skill-card reveal">
+              <h4>Diplôme</h4>
+              <ul>
+                <li>Baccalauréat STI2D</li>
+                <li>(Sciences et Technologies de l'Industrie et du Développement Durable)</li>
+              </ul>
+            </div>
+            <div class="skill-card reveal" data-delay="1">
+              <h4>Certification</h4>
+              <ul>
+                <li>Certification PIX</li>
+                <li>(Compétences numériques officielles)</li>
+              </ul>
+            </div>
+            <div class="skill-card reveal" data-delay="2">
+              <h4>En cours</h4>
+              <ul>
+                <li>BTS SIO option SISR</li>
+                <li>Promotion 2026</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- ========== COMPÉTENCES TECHNIQUES ========== -->
+          <h2 style="margin-bottom: 1.5rem;" class="reveal">Compétences techniques</h2>
+          <div class="skills-grid">
+
+            <div class="skill-card reveal">
+              <h4>Systèmes</h4>
+              <ul>
+                <li>Linux (Debian, Ubuntu)</li>
+                <li>Windows 10/11</li>
+                <li>OpenMediaVault</li>
+                <li>VMware / VirtualBox</li>
+                <li>BIOS / UEFI / Ghost</li>
+              </ul>
+            </div>
+
+            <div class="skill-card reveal" data-delay="1">
+              <h4>Réseaux</h4>
+              <ul>
+                <li>SSH / SCP</li>
+                <li>FTP / FTPS</li>
+                <li>DDNS (NoIP)</li>
+                <li>NAT / Redirections de ports</li>
+                <li>Brassage RJ-45 / Switch</li>
+              </ul>
+            </div>
+
+            <div class="skill-card reveal" data-delay="2">
+              <h4>Cybersécurité</h4>
+              <ul>
+                <li>TLS / Certificats SSL</li>
+                <li>ACL POSIX</li>
+                <li>PAM (restrictions horaires)</li>
+                <li>Auditd</li>
+                <li>BitLocker</li>
+              </ul>
+            </div>
+
+            <div class="skill-card reveal" data-delay="3">
+              <h4>Stockage</h4>
+              <ul>
+                <li>RAID 0 logiciel (mdadm)</li>
+                <li>ext4 / fstab</li>
+                <li>SSD / HDD</li>
+                <li>Diagnostic disques</li>
+              </ul>
+            </div>
+
+            <div class="skill-card reveal">
+              <h4>Outils</h4>
+              <ul>
+                <li>Docker / Docker Compose</li>
+                <li>GLPI (ticketing)</li>
+                <li>Cron</li>
+                <li>PuTTY / WinSCP</li>
+                <li>Scripts Bash</li>
+              </ul>
+            </div>
+
+            <div class="skill-card reveal" data-delay="1">
+              <h4>Web / E-commerce</h4>
+              <ul>
+                <li>HTML / CSS</li>
+                <li>Prestashop</li>
+                <li>Charte graphique</li>
+                <li>Cahier des charges</li>
+                <li>SEO (notions)</li>
+              </ul>
+            </div>
+
+            <div class="skill-card reveal" data-delay="2">
+              <h4>Soft skills</h4>
+              <ul>
+                <li>Documentation technique</li>
+                <li>Vulgarisation pour non-techs</li>
+                <li>Diagnostic méthodique</li>
+                <li>Autonomie</li>
+                <li>Travail en équipe</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         PAGE — VEILLE
+         ========================================= -->
+    <section class="page" data-page="veille">
+      <div class="hero" style="padding-bottom: 1.5rem;">
+        <div class="container">
+          <p class="eyebrow reveal" style="margin-bottom: 1.5rem;">Page 05 — Veille technologique</p>
+          <h1 class="hero-title reveal" data-delay="1" style="font-size: clamp(2.4rem, 7vw, 4.8rem);">
+            L'évolution des<br><em>processeurs gaming</em>.
+          </h1>
+          <p class="hero-tagline reveal" data-delay="2" style="margin-top: 1.5rem;">
+            Une veille personnelle sur les architectures CPU dédiées au jeu — moteur d'un projet professionnel orienté hardware et optimisation des performances.
+          </p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+
+          <!-- ========== SYNTHÈSE DE LA VEILLE ========== -->
+          <div class="veille-card reveal">
+            <h3>Synthèse de la veille</h3>
+
+            <h4>Sujet de veille</h4>
+            <p>Les évolutions technologiques des processeurs gaming.</p>
+
+            <h4>Projet professionnel</h4>
+            <p>Ingénieur en informatique spécialisé dans le hardware et l'optimisation des performances des systèmes gaming.</p>
+
+            <h4>Lien veille ↔ projet</h4>
+            <p>
+              Suivre l'évolution des processeurs gaming permet d'anticiper les tendances du marché, d'optimiser les performances des systèmes et de conseiller les utilisateurs sur les meilleures configurations possibles.
+            </p>
+          </div>
+
+          <div class="veille-card reveal" data-delay="1">
+            <h3>Besoins &amp; objectifs</h3>
+
+            <h4>Besoins identifiés</h4>
+            <ul>
+              <li>Comprendre les avancées des architectures CPU (nombre de cœurs, fréquence, gravure, consommation énergétique).</li>
+              <li>Suivre l'impact des nouvelles générations de processeurs sur le gaming (compatibilité, performances).</li>
+              <li>Identifier les tendances futures en matière d'optimisation logicielle et matérielle.</li>
+            </ul>
+
+            <h4>Objectifs de la veille</h4>
+            <ul>
+              <li>Se tenir informé des annonces et tests des derniers processeurs gaming.</li>
+              <li>Analyser les performances des nouvelles architectures en fonction des usages gaming.</li>
+              <li>Comparer les évolutions générationnelles des CPU pour anticiper les besoins futurs.</li>
+            </ul>
+          </div>
+
+          <div class="veille-card reveal" data-delay="2">
+            <h3>Présentation générale</h3>
+            <p>
+              L'industrie des processeurs gaming évolue rapidement avec des améliorations en matière d'efficacité énergétique, d'augmentation du nombre de cœurs et d'intégration d'IA pour optimiser les performances en jeu. <strong>Intel et AMD</strong> dominent le marché avec des innovations révolutionnaires, notamment l'architecture hybride P-cores / E-cores d'Intel et la technologie <strong>3D V-Cache</strong> d'AMD qui empile une mémoire cache supplémentaire directement sur le CPU.
+            </p>
+
+            <h4>Détail des alertes suivies</h4>
+            <ul>
+              <li>Sorties et annonces des nouvelles générations de processeurs gaming.</li>
+              <li>Tests et benchmarks des modèles récents.</li>
+              <li>Impact des nouvelles architectures sur les performances en jeu.</li>
+            </ul>
+          </div>
+
+          <!-- ========== CHRONOLOGIE ========== -->
+          <div class="veille-card reveal" data-delay="3">
+            <h3>Chronologie de l'évolution</h3>
+            <p style="color: var(--muted); margin-bottom: 1.5rem;">
+              Les jalons clés de mars 2024 à aujourd'hui — sortie des architectures Zen 5 et Arrow Lake, crise d'instabilité Intel, et nouveau roi du gaming chez AMD.
+            </p>
+
+            <div class="chrono-item">
+              <div class="chrono-date">Avr. 2024</div>
+              <div class="chrono-body">
+                <h5>AMD Ryzen 8000G — Premier desktop x86 avec NPU</h5>
+                <p>
+                  AMD complète sa gamme Ryzen 8000G (Phoenix) sur AM5 avec les modèles d'entrée Ryzen 5 8500G et Ryzen 3 8300G. Les modèles haut de gamme 8700G et 8600G inaugurent une révolution : les <strong>premiers processeurs desktop x86 à intégrer un NPU dédié</strong> (XDNA, 1,6 GHz) pour accélérer les charges d'intelligence artificielle locale. Couplés à des iGPU Radeon 700M capables de faire tourner les AAA en 1080p sans carte graphique.
+                </p>
+                <a href="https://www.tomshardware.com/pc-components/cpus/amd-launches-ryzen-8000g-phoenix-apus-brings-ai-to-the-desktop-pc-reveals-zen-4c-clocks-for-the-first-time" target="_blank" rel="noopener">→ Tom's Hardware — AMD Ryzen 8000G Phoenix APUs</a>
+              </div>
+            </div>
+
+            <div class="chrono-item">
+              <div class="chrono-date">Juin 2024</div>
+              <div class="chrono-body">
+                <h5>Crise d'instabilité Intel 13ᵉ/14ᵉ gen — microcode 0x125</h5>
+                <p>
+                  Les plaintes massives concernant les crashs des Core i9-13900K et 14900K (notamment dans les jeux Unreal Engine) explosent depuis mi-2023. Intel diffuse en juin 2024 le <strong>premier microcode correctif 0x125</strong> pour corriger un algorithme eTVB trop agressif. Mais le problème — dégradation irréversible de certaines puces causée par des pics de tension — n'est pas encore réglé.
+                </p>
+                <a href="https://www.tomshardware.com/pc-components/cpus/intel-finds-root-cause-of-cpu-crashing-and-instability-errors-prepares-new-and-final-microcode-update" target="_blank" rel="noopener">→ Tom's Hardware — Root cause Intel 13/14 gen</a>
+              </div>
+            </div>
+
+            <div class="chrono-item">
+              <div class="chrono-date">Août 2024</div>
+              <div class="chrono-body">
+                <h5>AMD Ryzen 9000 (Zen 5) — Lancement de la nouvelle génération</h5>
+                <p>
+                  AMD lance la série Ryzen 9000 sur architecture <strong>Zen 5</strong> gravée en 4 nm : Ryzen 7 9700X et Ryzen 5 9600X en premier (7 août), suivis du Ryzen 9 9950X (16 cœurs) et 9900X (12 cœurs). Gain d'IPC de 8-10 % par rapport à Zen 4, support AVX-512 complet, et efficacité énergétique remarquable (65 W de TDP de base sur les modèles standards).
+                </p>
+                <a href="https://www.amd.com/fr/products/processors/desktops/ryzen.html" target="_blank" rel="noopener">→ AMD — Processeurs Ryzen 9000</a>
+              </div>
+            </div>
+
+            <div class="chrono-item">
+              <div class="chrono-date">Août 2024</div>
+              <div class="chrono-body">
+                <h5>Intel microcode 0x129 — Plafonnement à 1,55 V</h5>
+                <p>
+                  Intel diffuse une seconde mise à jour microcode qui <strong>limite à 1,55 V les requêtes de tension du CPU à la carte mère</strong>, identifiées comme cause directe de la dégradation. Les tests indépendants (PC Gamer) confirment que le correctif n'a pas d'impact significatif sur les performances en jeu.
+                </p>
+                <a href="https://www.pcgamer.com/hardware/processors/intel-instability-fix-ive-seen-no-notable-impact-on-game-performance-with-0x129-patch-on-the-core-i9-14900k/" target="_blank" rel="noopener">→ PC Gamer — Impact du patch 0x129</a>
+              </div>
+            </div>
+
+            <div class="chrono-item">
+              <div class="chrono-date">Sept. 2024</div>
+              <div class="chrono-body">
+                <h5>Intel — Cause racine identifiée, microcode 0x12B et garantie étendue</h5>
+                <p>
+                  Intel publie le microcode <strong>0x12B</strong> qui adresse les requêtes de tension élevées également en idle et faible charge — la cause racine officielle de la "Vmin Shift Instability". En parallèle, Intel annonce une <strong>extension de garantie de 2 ans</strong> sur les processeurs Core 13e et 14e gen affectés (Core i5-13600KF jusqu'au Core i9-14900KS).
+                </p>
+                <a href="https://community.intel.com/t5/Blogs/Tech-Innovation/Client/Intel-Core-13th-and-14th-Gen-Desktop-Instability-Root-Cause/post/1633239" target="_blank" rel="noopener">→ Intel — Communiqué officiel sur l'instabilité</a>
+              </div>
+            </div>
+
+            <div class="chrono-item">
+              <div class="chrono-date">Oct. 2024</div>
+              <div class="chrono-body">
+                <h5>Intel Core Ultra Série 2 (Arrow Lake)</h5>
+                <p>
+                  Première grande refonte de la plateforme Intel grand public depuis 2017. Nouveau socket <strong>LGA 1851</strong>, gravure TSMC N3B, <strong>NPU intégré</strong> pour l'IA locale (concurrence directe de Ryzen AI), support DDR5-8000 officiel. Les modèles phares — Core Ultra 9 285K, Ultra 7 265K, Ultra 5 245K — abandonnent l'HyperThreading. Lancement initial décevant en gaming : Intel se retrouve 20 à 30 % derrière les X3D d'AMD en jeu.
+                </p>
+                <a href="https://www.intel.fr/content/www/fr/fr/products/details/processors/core-ultra.html" target="_blank" rel="noopener">→ Intel — Core Ultra Series 2</a>
+              </div>
+            </div>
+
+            <div class="chrono-item">
+              <div class="chrono-date">Nov. 2024</div>
+              <div class="chrono-body">
+                <h5>AMD Ryzen 7 9800X3D — La nouvelle référence du gaming</h5>
+                <p>
+                  Sortie du successeur du 7800X3D le 7 novembre 2024. Innovation majeure : le cache 3D V-Cache est désormais placé <em>sous</em> les cœurs (plus au-dessus), supprimant les contraintes thermiques et permettant pour la première fois <strong>l'overclocking d'un X3D</strong>. Boost jusqu'à 5,2 GHz, 96 Mo de cache L3, IPC en hausse de 8-10 %. La puce devient la <strong>référence absolue du gaming</strong>, jusqu'à 35 % devant le Core Ultra 9 285K selon Tom's Hardware.
+                </p>
+                <a href="https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9800x3d.html" target="_blank" rel="noopener">→ AMD — Ryzen 7 9800X3D</a>
+              </div>
+            </div>
+
+            <div class="chrono-item">
+              <div class="chrono-date">Mars 2025</div>
+              <div class="chrono-body">
+                <h5>AMD Ryzen 9 9950X3D et 9900X3D — Le 3D V-Cache sur 16 cœurs</h5>
+                <p>
+                  Lancement le 12 mars 2025 du Ryzen 9 9950X3D (16 cœurs, 32 threads, 144 Mo de cache L3 total) et du 9900X3D (12 cœurs). Adresse les utilisateurs faisant à la fois du <strong>gaming et de la création de contenu intensive</strong> (streaming, montage vidéo, IA générative locale). AMD confirme officiellement que la plateforme AM5 sera supportée <strong>au moins jusqu'en 2027</strong>.
+                </p>
+                <a href="https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-9-9950x3d.html" target="_blank" rel="noopener">→ AMD — Ryzen 9 9950X3D</a>
+              </div>
+            </div>
+
+            <div class="chrono-item">
+              <div class="chrono-date">Mai 2025</div>
+              <div class="chrono-body">
+                <h5>Intel microcode 0x12F — Dernier patch pour la 13ᵉ/14ᵉ gen</h5>
+                <p>
+                  Intel publie un <strong>quatrième et dernier patch microcode</strong> qui supplée le 0x12B en corrigeant un cas particulier d'instabilité sur les systèmes tournant pendant des jours en charge légère. Fin officielle de la saga d'instabilité Raptor Lake, deux ans après les premiers signalements.
+                </p>
+                <a href="https://www.club386.com/intel-publishes-new-microcode-to-further-improve-stability-on-13th-14th-gen-core-cpus/" target="_blank" rel="noopener">→ Club386 — Microcode 0x12F</a>
+              </div>
+            </div>
+
+            <div class="chrono-item">
+              <div class="chrono-date">Fin 2025</div>
+              <div class="chrono-body">
+                <h5>Intel Arrow Lake Refresh — Core Ultra 270K Plus / 250K Plus</h5>
+                <p>
+                  Intel corrige les faiblesses du lancement initial Arrow Lake avec un refresh introduisant le <strong>déplacement intelligent des threads</strong>, un <strong>Turbo adaptatif piloté par IA</strong> et une refonte des algorithmes de cache. Le Core Ultra 7 270K Plus rivalise désormais avec un Ryzen 7 7800X3D en jeu et surpasse le Core Ultra 9 285K original — preuve que la plateforme LGA 1851 a gagné en maturité.
+                </p>
+                <a href="https://www.materiel-gamer.com/quel-processeur-gaming-choisir-en-2026-ryzen-9000-x3d-vs-intel-core-ultra/" target="_blank" rel="noopener">→ Materiel-Gamer — Comparatif 2026</a>
+              </div>
+            </div>
+
+            <div class="chrono-item">
+              <div class="chrono-date">2026</div>
+              <div class="chrono-body">
+                <h5>État actuel — AMD reste la référence gaming, Intel revient en milieu de gamme</h5>
+                <p>
+                  À ce jour, le Ryzen 7 9800X3D conserve sa couronne du gaming pur, et le 9950X3D s'impose comme le choix polyvalent ultime. Côté Intel, les Core Ultra Refresh ont redonné de la compétitivité au milieu de gamme. La <strong>généralisation des écrans 480 Hz et l'arrivée du 540 Hz</strong> font du CPU un goulot d'étranglement critique sur les jeux esports, renforçant l'intérêt des architectures X3D. AM5 reste la plateforme la plus pérenne (supportée jusqu'en 2027 minimum).
+                </p>
+                <a href="https://pausehardware.com/classement-des-processeurs-guide-complet/" target="_blank" rel="noopener">→ Pause Hardware — Classement CPU 2026</a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         PAGE — RESSOURCES
+         ========================================= -->
+    <section class="page" data-page="ressources">
+      <div class="hero" style="padding-bottom: 1.5rem;">
+        <div class="container">
+          <p class="eyebrow reveal" style="margin-bottom: 1.5rem;">Page 06 — Ressources</p>
+          <h1 class="hero-title reveal" data-delay="1" style="font-size: clamp(2.4rem, 7vw, 4.8rem);">
+            Tous les <em>fichiers</em><br>du portfolio.
+          </h1>
+          <p class="hero-tagline reveal" data-delay="2" style="margin-top: 1.5rem;">
+            Documents, rapports, projets, archive complète — tout est téléchargeable ici.
+          </p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+          <div class="resource-grid">
+
+            <!-- CV -->
+            <div class="resource-card reveal">
+              <div class="resource-icon">CV</div>
+              <div class="resource-title">CV Charlie Dulieux</div>
+              <div class="resource-desc">
+                Curriculum vitae complet : compétences techniques (Linux, GLPI, réseaux, adressage IP), formation, expériences professionnelles, stages et intérêts. Candidature en alternance pour un poste d'administrateur réseau.
+              </div>
+              <div class="resource-actions">
+                <a class="btn btn-primary" href="CV_DULIEUX_Charlie.pdf" target="_blank" rel="noopener">Voir</a>
+                <a class="btn" href="CV_DULIEUX_Charlie.pdf" download>↓ 146 Ko</a>
+              </div>
+            </div>
+
+            <!-- GLPI -->
+            <div class="resource-card reveal" data-delay="1">
+              <div class="resource-icon">PDF</div>
+              <div class="resource-title">TP GLPI — Inventaire &amp; ticketing</div>
+              <div class="resource-desc">
+                Compte-rendu des trois activités pratiques GLPI (création d'inventaire, agent automatique, gestion de tickets). Captures d'écran et commandes détaillées sur 10 pages.
+              </div>
+              <div class="resource-actions">
+                <a class="btn btn-primary" href="GLPI_-_Charlie_DULIEUX.pdf" target="_blank" rel="noopener">Voir</a>
+                <a class="btn" href="GLPI_-_Charlie_DULIEUX.pdf" download>↓ 1,3 Mo</a>
+              </div>
+            </div>
+
+            <!-- Rapport Détours -->
+            <div class="resource-card reveal" data-delay="1">
+              <div class="resource-icon">PDF</div>
+              <div class="resource-title">Rapport de stage — Détours en Cinécourt</div>
+              <div class="resource-desc">
+                Synthèse de stage 2ᵉ année : mise en place d'un NAS accessible depuis l'extérieur (DDNS, SSH, FTPS, RAID 0, ACL). 13 pages.
+              </div>
+              <div class="resource-actions">
+                <a class="btn btn-primary" href="Rapport_de_stage_Detours_en_Cinecourt.pdf" target="_blank" rel="noopener">Voir</a>
+                <a class="btn" href="Rapport_de_stage_Detours_en_Cinecourt.pdf" download>↓ 870 Ko</a>
+              </div>
+            </div>
+
+            <!-- Rapport SCLE -->
+            <div class="resource-card reveal" data-delay="2">
+              <div class="resource-icon">PDF</div>
+              <div class="resource-title">Journal de stage — SCLE</div>
+              <div class="resource-desc">
+                Stage 1ʳᵉ année : inventaire au rebut, dépannage, GLPI, installation de postes Windows 11, et travail Linux personnel (Auditd, Cron, PAM, Bash). 11 pages.
+              </div>
+              <div class="resource-actions">
+                <a class="btn btn-primary" href="STAGE_BTS_SIO_1er_année.pdf" target="_blank" rel="noopener">Voir</a>
+                <a class="btn" href="STAGE_BTS_SIO_1er_année.pdf" download>↓ 232 Ko</a>
+              </div>
+            </div>
+
+            <!-- Projet Bar -->
+            <div class="resource-card reveal">
+              <div class="resource-icon">ZIP</div>
+              <div class="resource-title">Projet — The Disco Over (Bar)</div>
+              <div class="resource-desc">
+                Site vitrine HTML/CSS d'un bar à thème : 4 pages (accueil, concept, carte, formulaire), charte graphique violet/orange/crème, logo et visuels inclus.
+              </div>
+              <div class="resource-actions">
+                <a class="btn btn-primary" href="Bar.zip" download>↓ Télécharger</a>
+                <span class="btn" style="pointer-events: none; color: var(--muted);">377 Ko</span>
+              </div>
+            </div>
+
+            <!-- Projet Prestashop -->
+            <div class="resource-card reveal" data-delay="1">
+              <div class="resource-icon">ZIP</div>
+              <div class="resource-title">Projet — Boutique Prestashop</div>
+              <div class="resource-desc">
+                Cahier des charges, charte graphique, dossier de candidature et étude SEO pour une boutique d'accessoires de smartphone. Projet binôme.
+              </div>
+              <div class="resource-actions">
+                <a class="btn btn-primary" href="Prestashop.zip" download>↓ Télécharger</a>
+                <span class="btn" style="pointer-events: none; color: var(--muted);">394 Ko</span>
+              </div>
+            </div>
+
+            <!-- Portfolio complet -->
+            <div class="resource-card reveal" data-delay="2">
+              <div class="resource-icon">ZIP</div>
+              <div class="resource-title">Portfolio complet — Archive</div>
+              <div class="resource-desc">
+                Le portfolio HTML + tous les rapports + tous les projets, dans une seule archive. Pratique pour transmettre l'ensemble à un examinateur ou recruteur.
+              </div>
+              <div class="resource-actions">
+                <a class="btn btn-primary" href="Portfolio_Charlie_Dulieux.zip" download>↓ Télécharger</a>
+                <span class="btn" style="pointer-events: none; color: var(--muted);">~1,9 Mo</span>
+              </div>
+            </div>
+
+            <!-- Source HTML -->
+            <div class="resource-card reveal" data-delay="3">
+              <div class="resource-icon">HTML</div>
+              <div class="resource-title">Source du portfolio</div>
+              <div class="resource-desc">
+                Le fichier HTML du portfolio que tu lis actuellement. Auto-suffisant, sans dépendance, ouvrable d'un double-clic.
+              </div>
+              <div class="resource-actions">
+                <a class="btn btn-primary" href="portfolio.html" download>↓ Télécharger</a>
+                <span class="btn" style="pointer-events: none; color: var(--muted);">~45 Ko</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         PAGE — CONTACT
+         ========================================= -->
+    <section class="page" data-page="contact">
+      <div class="hero" style="padding-bottom: 1.5rem;">
+        <div class="container">
+          <p class="eyebrow reveal" style="margin-bottom: 1.5rem;">Page 07 — Contact</p>
+          <h1 class="hero-title reveal" data-delay="1" style="font-size: clamp(2.4rem, 7vw, 4.8rem);">
+            On en<br>discute<span class="accent">?</span>
+          </h1>
+          <p class="hero-tagline reveal" data-delay="2" style="margin-top: 1.5rem;">
+            Pour de l'<em>alternance en administration réseau</em> ou <em>cybersécurité</em>, ou simplement pour échanger sur un projet — toutes les options ci-dessous.
+          </p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+          <div class="contact-grid">
+
+            <a href="mailto:charliedulieux@gmail.com" class="contact-card reveal">
+              <div class="contact-label">Email</div>
+              <div class="contact-value">charliedulieux@gmail.com</div>
+            </a>
+
+            <a href="tel:+33766575600" class="contact-card reveal" data-delay="1">
+              <div class="contact-label">Téléphone</div>
+              <div class="contact-value">07 66 57 56 00</div>
+            </a>
+
+            <div class="contact-card reveal" data-delay="2">
+              <div class="contact-label">Adresse</div>
+              <div class="contact-value">145 Avenue des Minîmes, N°34<br>31 200 Toulouse</div>
+            </div>
+
+          </div>
+
+          <div class="btn-row reveal" data-delay="3" style="margin-top: 3rem; justify-content: center;">
+            <a class="btn btn-primary" href="mailto:charliedulieux@gmail.com">
+              Envoyer un email
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 5h12M9 1l4 4-4 4"/></svg>
+            </a>
+            <a class="btn" href="tel:+33766575600">
+              Appeler
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>© Charlie Dulieux</span>
+      <span>Portfolio BTS SIO</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* =========================================
+         SPA ROUTER — navigation par menu uniquement
+         ========================================= */
+      const pages = document.querySelectorAll('.page');
+      const navAnchors = document.querySelectorAll('.nav-center a');
+      const labels = {
+        accueil: 'Accueil',
+        parcours: 'Parcours',
+        projets: 'Projets',
+        competences: 'Compétences',
+        veille: 'Veille',
+        ressources: 'Ressources',
+        contact: 'Contact'
+      };
+
+      function setActivePage(name) {
+        if (!labels[name]) name = 'accueil';
+
+        pages.forEach(function (p) {
+          p.classList.toggle('active', p.dataset.page === name);
+        });
+
+        navAnchors.forEach(function (a) {
+          a.classList.toggle('active', a.dataset.route === name);
+        });
+
+        window.scrollTo({ top: 0, behavior: 'instant' });
+
+        if (history.replaceState) {
+          history.replaceState(null, '', '#' + name);
+        }
+
+        document.title = labels[name] + ' — Charlie Dulieux';
+      }
+
+      // Bind every route trigger (nav links AND brand)
+      document.querySelectorAll('[data-route]').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          setActivePage(el.dataset.route);
+
+          // Close mobile menu after selecting
+          const menu = document.querySelector('.nav-center');
+          const tog = document.querySelector('.nav-toggle');
+          if (menu) menu.classList.remove('open');
+          if (tog) tog.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      // Browser back/forward via hashchange
+      window.addEventListener('hashchange', function () {
+        const name = window.location.hash.replace('#', '') || 'accueil';
+        setActivePage(name);
+      });
+
+      // Initial load
+      const initial = window.location.hash.replace('#', '') || 'accueil';
+      setActivePage(initial);
+
+      /* =========================================
+         Mobile hamburger toggle — WORKING VERSION
+         ========================================= */
+      const toggle = document.querySelector('.nav-toggle');
+      const navMenu = document.querySelector('.nav-center');
+
+      if (toggle && navMenu) {
+        toggle.addEventListener('click', function (e) {
+          e.stopPropagation();
+          const isOpen = navMenu.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close menu when clicking outside (mobile UX)
+        document.addEventListener('click', function (e) {
+          if (!navMenu.contains(e.target) && !toggle.contains(e.target)) {
+            navMenu.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      /* =========================================
+         Project expand / collapse buttons
+         ========================================= */
+      document.querySelectorAll('[data-toggle="project"]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const project = btn.closest('.project');
+          if (!project) return;
+          const isOpen = project.classList.toggle('open');
+          // Update button label
+          btn.firstChild.textContent = isOpen ? 'Réduire les détails ' : 'Voir les détails ';
+        });
+      });
+
+    })();
+  </script>
+</body>
+</html>
