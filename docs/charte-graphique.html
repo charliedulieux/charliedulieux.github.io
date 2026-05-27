@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Charte graphique — Portfolio Charlie Dulieux</title>
+  <meta name="description" content="Charte graphique et système de design du portfolio de Charlie Dulieux. Couleurs, typographie, composants, règles d'usage." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #15100a;
+      --bg-soft: #1d1610;
+      --bg-card: #241b12;
+      --bg-card-hover: #2c2218;
+      --border: #3a2c1f;
+      --border-soft: #2a2018;
+      --orange: #FF7A1A;
+      --orange-soft: #ffa766;
+      --orange-deep: #d35f10;
+      --cream: #f5ede1;
+      --muted: #a89684;
+      --muted-soft: #7a6a5a;
+      --serif: 'Lora', Georgia, 'Times New Roman', serif;
+      --sans: 'Source Sans 3', -apple-system, system-ui, sans-serif;
+      --mono: 'JetBrains Mono', Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--cream);
+      line-height: 1.7;
+      font-size: 16.5px;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(ellipse at top right, rgba(255, 122, 26, 0.08), transparent 60%),
+        radial-gradient(ellipse at bottom left, rgba(255, 122, 26, 0.04), transparent 50%);
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--serif);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--cream);
+    }
+
+    h1 { font-size: clamp(2.6rem, 7vw, 5rem); font-weight: 700; }
+    h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); margin-bottom: 0.5rem; }
+    h3 { font-size: 1.4rem; margin-bottom: 0.6rem; }
+    h4 { font-size: 1.05rem; font-weight: 600; }
+
+    em {
+      font-style: italic;
+      color: var(--orange);
+      font-family: var(--serif);
+    }
+
+    p { color: var(--cream); margin-bottom: 0.7em; }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--orange);
+      font-weight: 500;
+    }
+
+    /* ===== Header ===== */
+    header {
+      padding: clamp(4rem, 9vw, 7rem) 0 clamp(3rem, 6vw, 5rem);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .brand-mark {
+      width: 8px;
+      height: 8px;
+      background: var(--orange);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--orange);
+    }
+
+    header p.intro {
+      max-width: 56ch;
+      font-size: 1.1rem;
+      color: var(--cream);
+      margin-top: 1.5rem;
+    }
+
+    /* ===== Sections ===== */
+    section {
+      padding: clamp(3rem, 6vw, 5rem) 0;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    section:last-of-type { border-bottom: none; }
+
+    .section-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-num {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--orange);
+      letter-spacing: 0.1em;
+      margin-right: 0.6rem;
+    }
+
+    /* ===== Color swatches ===== */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .swatch {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .swatch-color {
+      height: 90px;
+      width: 100%;
+    }
+
+    .swatch-meta {
+      padding: 0.8rem 1rem;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+    }
+
+    .swatch-meta .name {
+      color: var(--cream);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .swatch-meta .hex {
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .swatch-meta .role {
+      color: var(--muted-soft);
+      font-size: 0.7rem;
+      margin-top: 0.4rem;
+      display: block;
+    }
+
+    /* ===== Typography showcase ===== */
+    .type-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.5rem 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .type-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .type-label .specs {
+      color: var(--muted-soft);
+      font-size: 0.68rem;
+    }
+
+    .type-sample-serif {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      line-height: 1.1;
+      color: var(--cream);
+      letter-spacing: -0.01em;
+    }
+
+    .type-sample-serif-h2 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 2.2rem;
+      line-height: 1.15;
+      color: var(--cream);
+    }
+
+    .type-sample-serif em {
+      color: var(--orange);
+      font-style: italic;
+    }
+
+    .type-sample-sans {
+      font-family: var(--sans);
+      font-size: 1.05rem;
+      color: var(--cream);
+      line-height: 1.7;
+      max-width: 65ch;
+    }
+
+    .type-sample-mono {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--cream);
+      letter-spacing: 0.02em;
+    }
+
+    /* ===== Component preview ===== */
+    .comp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .comp-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.5rem;
+    }
+
+    .comp-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .comp-preview {
+      padding: 1.5rem;
+      background: var(--bg-soft);
+      border: 1px solid var(--border-soft);
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .comp-code {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.6;
+      background: var(--bg-soft);
+      padding: 0.8rem 1rem;
+      border-radius: 4px;
+      border: 1px solid var(--border-soft);
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    /* Btn samples */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.65rem 1.3rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--cream);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: var(--bg);
+      border-color: var(--orange);
+      font-weight: 600;
+    }
+
+    /* Nav capsule sample */
+    .nav-sample {
+      display: inline-flex;
+      gap: 0.3rem;
+      padding: 0.35rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+    }
+
+    .nav-sample a {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      padding: 0.55rem 1.05rem;
+      border-radius: 999px;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav-sample a.active {
+      background: var(--orange);
+      color: var(--bg);
+      font-weight: 600;
+    }
+
+    /* Resource card sample */
+    .res-card-sample {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.2rem;
+      max-width: 280px;
+    }
+
+    .res-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--orange);
+      color: var(--bg);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .res-title-sample {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--cream);
+      margin-bottom: 0.4rem;
+    }
+
+    .res-desc-sample {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ===== Token table ===== */
+    .token-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+    }
+
+    .token-table th, .token-table td {
+      text-align: left;
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .token-table th {
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .token-table td { color: var(--cream); }
+    .token-table td.token-name { color: var(--orange); }
+    .token-table td.token-desc { color: var(--muted); }
+
+    /* ===== Usage rules ===== */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .rule {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.3rem 1.5rem;
+      border-left: 3px solid var(--orange);
+    }
+
+    .rule.dont {
+      border-left-color: var(--muted-soft);
+      opacity: 0.85;
+    }
+
+    .rule-tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.6rem;
+    }
+
+    .rule.dont .rule-tag { color: var(--muted-soft); }
+
+    .rule h4 { margin-bottom: 0.4rem; }
+    .rule p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+
+    /* ===== Logo / brand showcase ===== */
+    .logo-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .logo-frame {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 140px;
+    }
+
+    .logo-frame.inverted {
+      background: var(--cream);
+    }
+
+    .logo-frame.inverted .brand-large {
+      color: var(--bg);
+    }
+
+    .logo-frame.inverted .brand-large .brand-mark {
+      background: var(--orange-deep);
+      box-shadow: 0 0 12px rgba(211, 95, 16, 0.4);
+    }
+
+    .brand-large {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+
+    .brand-large .brand-mark {
+      width: 10px;
+      height: 10px;
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 0 2rem;
+      border-top: 1px solid var(--border-soft);
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    @media print {
+      body::before { display: none; }
+      section { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <header>
+      <span class="brand">
+        <span class="brand-mark"></span>
+        CHARLIE&nbsp;DULIEUX · PORTFOLIO
+      </span>
+      <p class="eyebrow" style="margin-bottom: 1.5rem;">Document de référence</p>
+      <h1>Charte<br><em>graphique</em>.</h1>
+      <p class="intro">
+        Système de design du portfolio Charlie Dulieux. Couleurs, typographie, composants et règles d'usage. Tout ce qu'il faut pour étendre le site en restant cohérent.
+      </p>
+    </header>
+
+    <!-- ===== 1 — IDENTITÉ ===== -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">01 /</span>
+        <h2>Identité &amp; logo</h2>
+        <p style="color: var(--muted); margin-top: 0.4rem;">La marque s'incarne dans un wordmark monospace et un point lumineux orange — sobre, technique, mémorable.</p>
+      </div>
+
+      <div class="logo-showcase">
+        <div class="logo-frame">
+          <span class="brand-large">
+            <span class="brand-mark"></span>
+            CHARLIE&nbsp;DULIEUX
+          </span>
+        </div>
+        <div class="logo-frame inverted">
+          <span class="brand-large">
+            <span class="brand-mark"></span>
+            CHARLIE&nbsp;DULIEUX
+          </span>
+        </div>
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <h4 style="margin-bottom: 0.8rem;">Règles d'usage</h4>
+        <ul style="color: var(--muted); padding-left: 1.2rem; line-height: 2;">
+          <li>Toujours afficher le wordmark en <strong style="color: var(--cream);">JetBrains Mono</strong>, en capitales, avec un letter-spacing de 0.22em.</li>
+          <li>Le point orange (8&nbsp;px de diamètre, glow 12&nbsp;px) précède le nom et reste indissociable du wordmark.</li>
+          <li>Espace de protection autour du logo : équivalent à 2× la hauteur du wordmark.</li>
+          <li>Sur fond clair, utiliser <code style="font-family: var(--mono); color: var(--orange);">--orange-deep</code> pour le point afin de conserver le contraste.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 2 — COULEURS ===== -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">02 /</span>
+        <h2>Palette de couleurs</h2>
+        <p style="color: var(--muted); margin-top: 0.4rem;">Une base sombre chaude qui rappelle le terminal au crépuscule, ponctuée d'un orange vif comme accent unique.</p>
+      </div>
+
+      <h3 style="margin-bottom: 0.8rem; color: var(--muted); font-size: 0.95rem; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500;">Surfaces sombres</h3>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background: #15100a;"></div>
+          <div class="swatch-meta">
+            <span class="name">--bg</span>
+            <span class="hex">#15100A</span>
+            <span class="role">Fond principal</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #1d1610;"></div>
+          <div class="swatch-meta">
+            <span class="name">--bg-soft</span>
+            <span class="hex">#1D1610</span>
+            <span class="role">Encarts secondaires</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #241b12;"></div>
+          <div class="swatch-meta">
+            <span class="name">--bg-card</span>
+            <span class="hex">#241B12</span>
+            <span class="role">Cartes &amp; surfaces élevées</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #2c2218;"></div>
+          <div class="swatch-meta">
+            <span class="name">--bg-card-hover</span>
+            <span class="hex">#2C2218</span>
+            <span class="role">État hover des cartes</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin: 2rem 0 0.8rem; color: var(--muted); font-size: 0.95rem; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500;">Orange — accent unique</h3>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background: #FF7A1A;"></div>
+          <div class="swatch-meta">
+            <span class="name">--orange</span>
+            <span class="hex">#FF7A1A</span>
+            <span class="role">Accent principal, CTA, liens actifs</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #ffa766;"></div>
+          <div class="swatch-meta">
+            <span class="name">--orange-soft</span>
+            <span class="hex">#FFA766</span>
+            <span class="role">Hover, highlights doux</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #d35f10;"></div>
+          <div class="swatch-meta">
+            <span class="name">--orange-deep</span>
+            <span class="hex">#D35F10</span>
+            <span class="role">Versions sur fond clair</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin: 2rem 0 0.8rem; color: var(--muted); font-size: 0.95rem; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500;">Texte &amp; bordures</h3>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background: #f5ede1;"></div>
+          <div class="swatch-meta">
+            <span class="name">--cream</span>
+            <span class="hex">#F5EDE1</span>
+            <span class="role">Texte principal</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #a89684;"></div>
+          <div class="swatch-meta">
+            <span class="name">--muted</span>
+            <span class="hex">#A89684</span>
+            <span class="role">Texte secondaire</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #7a6a5a;"></div>
+          <div class="swatch-meta">
+            <span class="name">--muted-soft</span>
+            <span class="hex">#7A6A5A</span>
+            <span class="role">Texte tertiaire, métadonnées</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #3a2c1f;"></div>
+          <div class="swatch-meta">
+            <span class="name">--border</span>
+            <span class="hex">#3A2C1F</span>
+            <span class="role">Bordures principales</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3 — TYPOGRAPHIE ===== -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">03 /</span>
+        <h2>Typographie</h2>
+        <p style="color: var(--muted); margin-top: 0.4rem;">Une combinaison serif/sans/mono qui mêle l'éditorial (Lora), la lisibilité (Source Sans 3) et la technique (JetBrains Mono).</p>
+      </div>
+
+      <div class="type-block">
+        <div class="type-label">
+          <span>Lora · 700 · Titres principaux</span>
+          <span class="specs">clamp(2.6rem, 7vw, 5.5rem) · -0.01em · 1.15</span>
+        </div>
+        <div class="type-sample-serif">Architecture, <em>réseau</em>, sécurité.</div>
+      </div>
+
+      <div class="type-block">
+        <div class="type-label">
+          <span>Lora · 600 · Titres de section (h2)</span>
+          <span class="specs">clamp(1.9rem, 4vw, 3rem) · 1.15</span>
+        </div>
+        <div class="type-sample-serif-h2">Mes projets pratiques</div>
+      </div>
+
+      <div class="type-block">
+        <div class="type-label">
+          <span>Source Sans 3 · 400 · Corps de texte</span>
+          <span class="specs">16.5px · line-height 1.7</span>
+        </div>
+        <p class="type-sample-sans">
+          Étudiant en BTS SIO option SISR, je conçois des solutions d'infrastructure pragmatiques. Stockage, accès distant sécurisé, supervision réseau&nbsp;: j'aime les architectures qui tiennent debout — et qui se documentent.
+        </p>
+      </div>
+
+      <div class="type-block">
+        <div class="type-label">
+          <span>JetBrains Mono · 400 · Code, labels, métadonnées</span>
+          <span class="specs">0.85rem · 0.02em</span>
+        </div>
+        <div class="type-sample-mono">$ sudo systemctl status nginx → active (running) since 14:23:11 CEST</div>
+      </div>
+
+      <div class="type-block">
+        <div class="type-label">
+          <span>JetBrains Mono · Petites capitales (eyebrows)</span>
+          <span class="specs">0.78rem · 0.18em · 500</span>
+        </div>
+        <span class="eyebrow">Page 03 — Projets &amp; veille</span>
+      </div>
+    </section>
+
+    <!-- ===== 4 — TOKENS ===== -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">04 /</span>
+        <h2>Tokens &amp; espacements</h2>
+        <p style="color: var(--muted); margin-top: 0.4rem;">Toutes les valeurs réutilisables, prêtes à être copiées dans n'importe quel composant.</p>
+      </div>
+
+      <table class="token-table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Valeur</th>
+            <th>Utilisation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="token-name">--max-width</td><td>1200px</td><td class="token-desc">Largeur maximale du contenu</td></tr>
+          <tr><td class="token-name">container narrow</td><td>880px</td><td class="token-desc">Pour les pages de lecture (texte long)</td></tr>
+          <tr><td class="token-name">padding section</td><td>clamp(3rem, 7vw, 5rem)</td><td class="token-desc">Padding vertical d'une section</td></tr>
+          <tr><td class="token-name">padding hero</td><td>clamp(3.5rem, 9vw, 7rem)</td><td class="token-desc">Padding du hero principal</td></tr>
+          <tr><td class="token-name">border-radius card</td><td>4px</td><td class="token-desc">Cartes, encarts, conteneurs</td></tr>
+          <tr><td class="token-name">border-radius pill</td><td>999px</td><td class="token-desc">Boutons, navigation, badges</td></tr>
+          <tr><td class="token-name">gap grid</td><td>1.5rem</td><td class="token-desc">Entre les cartes d'une grille</td></tr>
+          <tr><td class="token-name">backdrop-filter</td><td>blur(14px)</td><td class="token-desc">Header sticky transparent</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ===== 5 — COMPOSANTS ===== -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">05 /</span>
+        <h2>Composants clés</h2>
+        <p style="color: var(--muted); margin-top: 0.4rem;">Les briques visuelles du portfolio, telles qu'elles apparaissent dans l'interface.</p>
+      </div>
+
+      <div class="comp-grid">
+
+        <div class="comp-card">
+          <div class="comp-label">Boutons</div>
+          <div class="comp-preview">
+            <button class="btn btn-primary">Voir le projet</button>
+            <button class="btn">↓ Télécharger</button>
+          </div>
+          <div class="comp-code">.btn — pill 999px<br>.btn-primary — bg orange + cream</div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-label">Navigation</div>
+          <div class="comp-preview" style="padding: 1rem;">
+            <div class="nav-sample">
+              <a>Accueil</a>
+              <a class="active">Projets</a>
+              <a>Contact</a>
+            </div>
+          </div>
+          <div class="comp-code">.nav-center — pill horizontale<br>Item actif : bg orange + cream foncé</div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-label">Carte ressource</div>
+          <div class="comp-preview">
+            <div class="res-card-sample">
+              <div class="res-icon">PDF</div>
+              <div class="res-title-sample">Rapport de stage</div>
+              <div class="res-desc-sample">Synthèse 13 pages — DDNS, FTPS, ACL, RAID 0.</div>
+            </div>
+          </div>
+          <div class="comp-code">.resource-card — bg-card + border<br>Icône orange + titre serif</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== 6 — RÈGLES ===== -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">06 /</span>
+        <h2>Règles d'usage</h2>
+        <p style="color: var(--muted); margin-top: 0.4rem;">Les principes à respecter pour garder la cohérence visuelle en étendant le portfolio.</p>
+      </div>
+
+      <div class="rules-grid">
+
+        <div class="rule">
+          <div class="rule-tag">À faire</div>
+          <h4>Un seul accent orange</h4>
+          <p>L'orange <code style="font-family: var(--mono); font-size: 0.85em; color: var(--orange);">#FF7A1A</code> est la seule couleur d'accent. Pas de bleu, pas de vert, pas de second accent — la cohérence vient de cette contrainte.</p>
+        </div>
+
+        <div class="rule">
+          <div class="rule-tag">À faire</div>
+          <h4>Italique pour les mots clés</h4>
+          <p>Dans les titres serif, mettre <em>en italique orange</em> le mot qui porte le sens. Ailleurs dans le corps de texte, italique cream.</p>
+        </div>
+
+        <div class="rule">
+          <div class="rule-tag">À faire</div>
+          <h4>Espace négatif généreux</h4>
+          <p>Padding section minimum <code style="font-family: var(--mono); font-size: 0.85em; color: var(--orange);">clamp(3rem, 7vw, 5rem)</code>. Le contenu respire — on ne remplit jamais "pour remplir".</p>
+        </div>
+
+        <div class="rule dont">
+          <div class="rule-tag">À éviter</div>
+          <h4>Pas de dégradés bruyants</h4>
+          <p>Les seuls dégradés autorisés sont les <code style="font-family: var(--mono); font-size: 0.85em; color: var(--muted);">radial-gradient</code> très diffus du fond. Pas de boutons en dégradé, pas d'arrière-plans saturés.</p>
+        </div>
+
+        <div class="rule dont">
+          <div class="rule-tag">À éviter</div>
+          <h4>Pas de polices alternatives</h4>
+          <p>Trois polices, c'est tout : Lora, Source Sans 3, JetBrains Mono. Pas d'ajout de Comic Sans, Helvetica, Roboto ou autre — même "juste pour ce titre".</p>
+        </div>
+
+        <div class="rule dont">
+          <div class="rule-tag">À éviter</div>
+          <h4>Pas d'ombres lourdes</h4>
+          <p>Une seule ombre subtile sur le hero-photo. Ailleurs, on reste plat : la profondeur vient du contraste des fonds, pas des ombres portées.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== 7 — RESPONSIVE ===== -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">07 /</span>
+        <h2>Responsive</h2>
+        <p style="color: var(--muted); margin-top: 0.4rem;">Les valeurs <code style="font-family: var(--mono); font-size: 0.85em; color: var(--orange);">clamp()</code> font l'essentiel du travail — pas besoin de breakpoints partout.</p>
+      </div>
+
+      <table class="token-table">
+        <thead>
+          <tr>
+            <th>Breakpoint</th>
+            <th>Valeur</th>
+            <th>Bascule</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="token-name">Mobile</td><td>&lt; 760px</td><td class="token-desc">Nav passe en menu hamburger, grilles en colonne unique</td></tr>
+          <tr><td class="token-name">Tablette</td><td>760–1000px</td><td class="token-desc">Grilles passent à 2 colonnes</td></tr>
+          <tr><td class="token-name">Desktop</td><td>&gt; 1000px</td><td class="token-desc">Layout final 3 colonnes selon les sections</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      <p>Charte graphique · Portfolio Charlie Dulieux · BTS SIO SISR · Mise à jour&nbsp;: <span id="update-date"></span></p>
+    </footer>
+
+  </div>
+
+  <script>
+    const d = new Date();
+    document.getElementById('update-date').textContent = d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+  </script>
+</body>
+</html>
