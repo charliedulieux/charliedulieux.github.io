@@ -809,6 +809,134 @@
     }
 
     /* =========================================
+       FICHES TECHNIQUES RÉSEAU (pédagogie oral)
+       ========================================= */
+    .fiches-intro { color: var(--muted); max-width: 75ch; margin-bottom: 2rem; }
+    .fiche .project-title { font-size: clamp(1.25rem, 2.2vw, 1.6rem); }
+    .fiche-def {
+      border-left: 3px solid var(--orange);
+      padding: 0.2rem 0 0.2rem 1rem;
+      margin-bottom: 1.2rem;
+      color: var(--cream);
+      max-width: 75ch;
+    }
+    .fiche-steps { counter-reset: step; list-style: none; padding: 0; }
+    .fiche-steps li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 2.2rem;
+      margin-bottom: 0.7rem;
+      color: var(--cream);
+    }
+    .fiche-steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0; top: 0.15rem;
+      width: 1.5rem; height: 1.5rem;
+      border-radius: 50%;
+      background: rgba(255, 122, 26, 0.15);
+      border: 1px solid rgba(255, 122, 26, 0.45);
+      color: var(--orange-soft);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .fiche-qa dt {
+      font-weight: 600;
+      color: var(--cream);
+      margin-top: 0.8rem;
+    }
+    .fiche-qa dt::before { content: "Q. "; color: var(--orange); font-family: var(--mono); }
+    .fiche-qa dd { color: var(--muted); margin: 0.2rem 0 0 1.6rem; }
+    .ref-badge {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      padding: 0.3rem 0.7rem;
+      background: var(--orange);
+      color: var(--bg);
+      border-radius: 999px;
+      font-weight: 500;
+    }
+
+    /* Schéma de flux réseau */
+    .net-flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      gap: 0.5rem;
+      margin: 0.5rem 0 1.2rem;
+    }
+    .net-node {
+      flex: 1 1 140px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.8rem;
+      text-align: center;
+      font-size: 0.88rem;
+    }
+    .net-node strong { display: block; color: var(--cream); font-family: var(--sans); }
+    .net-node span { display: block; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); margin-top: 0.3rem; overflow-wrap: anywhere; }
+    .net-node.accent { border-color: var(--orange-deep); }
+    .net-arrow {
+      align-self: center;
+      color: var(--orange);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      text-align: center;
+      flex: 0 0 auto;
+      line-height: 1.4;
+    }
+
+    /* Tableaux (sources de veille, comparatifs) */
+    .table-wrap { overflow-x: auto; margin: 0.8rem 0 0.5rem; }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    .data-table th, .data-table td {
+      text-align: left;
+      padding: 0.6rem 0.8rem;
+      border-bottom: 1px solid var(--border-soft);
+      vertical-align: top;
+    }
+    .data-table th {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+      font-weight: 500;
+    }
+    .data-table td { color: var(--cream); }
+    .data-table td.muted { color: var(--muted); }
+
+    .veille-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 0.8rem;
+    }
+    .veille-mini {
+      background: var(--bg-soft);
+      border: 1px solid var(--border-soft);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+    }
+    .veille-mini h5 { font-family: var(--serif); font-size: 1.05rem; color: var(--cream); margin-bottom: 0.4rem; }
+    .veille-mini p { color: var(--muted); font-size: 0.93rem; }
+    .veille-mini .ref-badge { display: inline-block; margin-bottom: 0.6rem; }
+
+    @media (max-width: 700px) {
+      .net-flow { flex-direction: column; }
+      .net-node { flex: 0 0 auto; }
+    }
+    .net-arrow .v { display: none; }
+    .net-arrow .h, .net-arrow .v { font-size: 1.2rem; }
+    @media (max-width: 700px) {
+      .net-arrow .h { display: none; }
+      .net-arrow .v { display: inline; }
+    }
+
+    /* =========================================
        RESPONSIVE
        ========================================= */
     @media (max-width: 900px) {
@@ -1118,6 +1246,44 @@
                   <li>Permissions Docker manquantes pour <code class="inline">omvssh</code> — ajout au groupe <code class="inline">docker</code>.</li>
                   <li>Fichier <code class="inline">no-ip2.conf</code> hors du chemin attendu — localisation via <code class="inline">find /</code> et déplacement manuel.</li>
                 </ul>
+              </div>
+
+              <div class="project-block">
+                <h4>Schéma — Le chemin d'une connexion d'un bénévole jusqu'au NAS</h4>
+                <div class="net-flow" role="img" aria-label="Bénévole, puis DNS NoIP, puis Freebox (NAT), puis NAS OpenMediaVault">
+                  <div class="net-node"><strong>Bénévole</strong><span>Client FTPS / SSH<br>depuis chez lui</span></div>
+                  <div class="net-arrow"><span class="h">→</span><span class="v">↓</span><br>① requête DNS</div>
+                  <div class="net-node"><strong>DNS NoIP</strong><span>detoursomv.serveftp.com<br>→ IP publique du jour</span></div>
+                  <div class="net-arrow"><span class="h">→</span><span class="v">↓</span><br>② connexion IP publique</div>
+                  <div class="net-node accent"><strong>Freebox (NAT/PAT)</strong><span>:21 · :32770 · :49152-65534<br>→ IP privée du NAS</span></div>
+                  <div class="net-arrow"><span class="h">→</span><span class="v">↓</span><br>③ redirection</div>
+                  <div class="net-node accent"><strong>NAS OMV</strong><span>ProFTPD (TLS) · SSH<br>RAID 0 + ACL</span></div>
+                </div>
+                <ul>
+                  <li><strong>① Résolution du nom</strong> — l'IP publique de la Freebox peut changer. Le client Docker NoIP la renvoie toutes les 30 min au fournisseur DDNS : le nom de domaine pointe donc toujours vers la bonne adresse.</li>
+                  <li><strong>② Arrivée sur la box</strong> — de l'extérieur, seule l'IP publique est visible. Le NAS a une IP privée (RFC 1918), non routable sur Internet.</li>
+                  <li><strong>③ Traduction d'adresse (NAT/PAT)</strong> — la Freebox consulte sa table de redirections : un paquet reçu sur le port 21, 32770 ou la plage passive est réécrit vers l'IP privée du NAS. Tout autre port est rejeté.</li>
+                  <li><strong>④ Authentification et droits</strong> — le TLS chiffre l'identifiant, le mot de passe et les données ; une fois connecté, les ACL POSIX décident si l'utilisateur peut seulement lire (groupe <em>read</em>) ou aussi écrire (groupe <em>writeread</em>).</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <h4>Choix techniques justifiés</h4>
+                <ul>
+                  <li><strong>FTPS plutôt que FTP</strong> : le FTP transmet le mot de passe en clair ; le FTPS ajoute une couche TLS sans changer les clients (FileZilla) des bénévoles.</li>
+                  <li><strong>Mode passif</strong> : c'est le client qui ouvre la connexion de données vers le serveur, ce qui passe les box et pare-feu côté bénévole. Contrepartie : il faut rediriger toute la plage passive sur la Freebox.</li>
+                  <li><strong>SSH sur un port non standard (32770)</strong> : réduit fortement le bruit des robots qui scannent le port 22. Ce n'est pas une sécurité en soi : la vraie protection reste l'authentification et l'utilisateur dédié.</li>
+                  <li><strong>RAID 0</strong> : priorité donnée à la capacité (7,3 To) et au débit. <em>Limite assumée</em> : aucune tolérance de panne, la perte d'un disque fait perdre tout le volume. Les films originaux restant chez les réalisateurs, le risque a été jugé acceptable ; un RAID 1 ou une sauvegarde externe serait l'évolution à prévoir.</li>
+                </ul>
+              </div>
+
+              <div class="project-block">
+                <h4>Compétences du référentiel mobilisées</h4>
+                <div class="project-tags" style="margin-bottom: 0;">
+                  <span class="ref-badge">B1.4 Travailler en mode projet</span>
+                  <span class="ref-badge">B1.5 Mettre à disposition un service informatique</span>
+                  <span class="ref-badge">B1.1 Gérer le patrimoine informatique</span>
+                </div>
               </div>
 
               <div class="project-actions">
@@ -1583,6 +1749,351 @@
             </div>
 
           </div>
+
+          <!-- ========== FICHES TECHNIQUES RÉSEAU ========== -->
+          <h2 style="margin: 3.5rem 0 1rem;" class="reveal">Fiches techniques réseau</h2>
+          <p class="fiches-intro reveal">
+            Pour chaque notion réseau utilisée dans mes projets, une fiche suit le même plan : <strong>définition</strong>, <strong>problème résolu</strong>, <strong>fonctionnement pas à pas</strong>, <strong>mise en œuvre dans mes réalisations</strong>, <strong>points de sécurité</strong> et <strong>questions possibles à l'oral</strong>.
+          </p>
+
+          <!-- FICHE 1 — NAT / PAT -->
+          <article class="project fiche reveal">
+            <div class="project-head">
+              <div>
+                <p class="project-company">Fiche 01 · Couche 3/4 — Réseau &amp; transport</p>
+                <h3 class="project-title">NAT / PAT &amp; redirection de ports</h3>
+              </div>
+              <div class="project-meta">Utilisé dans :<br>NAS Détours en Cinécourt<br>TP GLPI (VirtualBox)</div>
+            </div>
+            <p class="fiche-def">
+              Le <strong>NAT</strong> (Network Address Translation) réécrit les adresses IP des paquets qui traversent un routeur. Le <strong>PAT</strong> (ou NAT de surcharge) utilise en plus les numéros de port pour faire partager <em>une seule</em> IP publique à tout un réseau privé.
+            </p>
+            <div class="project-tags">
+              <span class="ref-badge">B1.5</span>
+              <span class="tag">IP publique / privée</span>
+              <span class="tag">RFC 1918</span>
+              <span class="tag">Table NAT</span>
+            </div>
+            <button class="project-expand-btn" data-toggle="project">Voir les détails <span class="chev">▾</span></button>
+            <div class="project-details">
+              <div class="project-block">
+                <h4>Problème résolu</h4>
+                <ul>
+                  <li>Il n'y a pas assez d'adresses IPv4 publiques pour chaque appareil : les réseaux locaux utilisent des plages privées (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16), non routables sur Internet.</li>
+                  <li>Par défaut, le NAT laisse <em>sortir</em> les connexions mais bloque celles qui arrivent de l'extérieur : un serveur interne n'est donc pas joignable sans configuration.</li>
+                </ul>
+              </div>
+              <div class="project-block">
+                <h4>Fonctionnement pas à pas</h4>
+                <ol class="fiche-steps">
+                  <li><strong>Sortie</strong> : un PC 192.168.1.20:51000 contacte un site. La box remplace l'adresse source par son IP publique et un port libre, et note la correspondance dans sa <em>table NAT</em>.</li>
+                  <li><strong>Retour</strong> : la réponse arrive sur l'IP publique ; grâce à la table, la box sait à quel PC interne la renvoyer.</li>
+                  <li><strong>Entrée (redirection de ports / DNAT)</strong> : pour un serveur, on crée une règle statique : « tout ce qui arrive sur le port X de l'IP publique va vers IP_privée:port_Y ».</li>
+                  <li>Les ports non redirigés n'ont pas de correspondance : les paquets sont ignorés. C'est ce qui protège le réseau interne.</li>
+                </ol>
+              </div>
+              <div class="project-block">
+                <h4>Mise en œuvre dans mes projets</h4>
+                <ul>
+                  <li><strong>NAS</strong> : redirections sur la Freebox du port 21 (FTPS), du 32770 (SSH) et de la plage passive 49152–65534 vers l'IP privée du NAS.</li>
+                  <li><strong>TP GLPI</strong> : redirection VirtualBox port hôte 9980 → port 80 de la VM, pour que l'agent joigne le serveur GLPI.</li>
+                </ul>
+              </div>
+              <div class="project-block">
+                <h4>Sécurité &amp; points de vigilance</h4>
+                <ul>
+                  <li>N'ouvrir que les ports nécessaires : chaque redirection expose un service à Internet.</li>
+                  <li>La <strong>DMZ</strong> redirige <em>tous</em> les ports vers une machine : je l'ai utilisée uniquement pendant les tests, puis remplacée par des règles ciblées.</li>
+                  <li>Le NAT n'est pas un pare-feu : il masque, mais ne filtre pas le contenu. Un pare-feu (ex. pfSense) reste nécessaire en entreprise.</li>
+                </ul>
+              </div>
+              <div class="project-block">
+                <h4>Questions possibles à l'oral</h4>
+                <dl class="fiche-qa">
+                  <dt>Quelle différence entre NAT statique, dynamique et PAT ?</dt>
+                  <dd>Statique : 1 IP privée ↔ 1 IP publique fixe. Dynamique : pioche dans un pool d'IP publiques. PAT : plusieurs IP privées derrière une seule IP publique, différenciées par le port.</dd>
+                  <dt>Pourquoi une DMZ est-elle risquée sur une box ?</dt>
+                  <dd>Parce que la machine est exposée sur tous ses ports : un service oublié ou vulnérable devient directement attaquable.</dd>
+                  <dt>Le NAT existe-t-il en IPv6 ?</dt>
+                  <dd>Il n'est plus nécessaire : chaque appareil peut avoir une adresse publique. La protection repose alors entièrement sur le pare-feu.</dd>
+                </dl>
+              </div>
+            </div>
+          </article>
+
+          <!-- FICHE 2 — DNS / DDNS -->
+          <article class="project fiche reveal">
+            <div class="project-head">
+              <div>
+                <p class="project-company">Fiche 02 · Couche 7 — Application</p>
+                <h3 class="project-title">DNS &amp; DNS dynamique (DDNS)</h3>
+              </div>
+              <div class="project-meta">Utilisé dans :<br>NAS Détours en Cinécourt</div>
+            </div>
+            <p class="fiche-def">
+              Le <strong>DNS</strong> traduit un nom de domaine en adresse IP. Le <strong>DDNS</strong> met à jour automatiquement cet enregistrement quand l'IP publique change, ce qui arrive souvent sur une box grand public.
+            </p>
+            <div class="project-tags">
+              <span class="ref-badge">B1.5</span>
+              <span class="tag">Enregistrement A</span>
+              <span class="tag">TTL</span>
+              <span class="tag">NoIP</span>
+              <span class="tag">Docker</span>
+            </div>
+            <button class="project-expand-btn" data-toggle="project">Voir les détails <span class="chev">▾</span></button>
+            <div class="project-details">
+              <div class="project-block">
+                <h4>Problème résolu</h4>
+                <ul>
+                  <li>Les bénévoles ne peuvent pas retenir une IP, et l'IP publique de la Freebox peut changer après un redémarrage ou une décision du FAI : l'accès casserait sans prévenir.</li>
+                </ul>
+              </div>
+              <div class="project-block">
+                <h4>Fonctionnement pas à pas</h4>
+                <ol class="fiche-steps">
+                  <li>Le client demande <code class="inline">detoursomv.serveftp.com</code> à son résolveur DNS (celui du FAI, par exemple).</li>
+                  <li>Le résolveur interroge successivement les serveurs racine, puis ceux du domaine <code class="inline">.com</code>, puis le serveur faisant autorité (NoIP).</li>
+                  <li>NoIP renvoie l'<strong>enregistrement A</strong> (nom → IPv4) avec un <strong>TTL</strong> court, pour que les caches ne gardent pas trop longtemps une ancienne IP.</li>
+                  <li>En parallèle, le conteneur Docker NoIP sur le NAS vérifie l'IP publique toutes les 30 min et la renvoie à NoIP si elle a changé.</li>
+                </ol>
+              </div>
+              <div class="project-block">
+                <h4>Sécurité &amp; points de vigilance</h4>
+                <ul>
+                  <li>Les identifiants du compte NoIP sont stockés sur le NAS : fichier de configuration à protéger (droits restreints).</li>
+                  <li>Un compte NoIP gratuit doit être confirmé régulièrement, sinon le nom expire : point à documenter pour l'association.</li>
+                </ul>
+              </div>
+              <div class="project-block">
+                <h4>Questions possibles à l'oral</h4>
+                <dl class="fiche-qa">
+                  <dt>Quels autres types d'enregistrements DNS connaissez-vous ?</dt>
+                  <dd>AAAA (IPv6), CNAME (alias vers un autre nom), MX (serveur de messagerie), NS (serveurs faisant autorité), PTR (résolution inverse IP → nom), TXT (SPF, vérifications).</dd>
+                  <dt>Quel port utilise le DNS ?</dt>
+                  <dd>Le port 53, en UDP pour les requêtes classiques et en TCP pour les réponses volumineuses et les transferts de zone.</dd>
+                  <dt>Pourquoi ne pas demander une IP fixe ?</dt>
+                  <dd>C'est possible chez certains FAI, mais le DDNS est gratuit et ne dépend pas de l'offre souscrite par l'association.</dd>
+                </dl>
+              </div>
+            </div>
+          </article>
+
+          <!-- FICHE 3 — FTP / FTPS -->
+          <article class="project fiche reveal">
+            <div class="project-head">
+              <div>
+                <p class="project-company">Fiche 03 · Couche 7 — Transfert de fichiers</p>
+                <h3 class="project-title">FTP, FTPS &amp; modes actif / passif</h3>
+              </div>
+              <div class="project-meta">Utilisé dans :<br>NAS Détours en Cinécourt<br>(ProFTPD)</div>
+            </div>
+            <p class="fiche-def">
+              Le <strong>FTP</strong> utilise <em>deux connexions</em> : une de contrôle (port 21, les commandes) et une de données (les fichiers). Le <strong>FTPS</strong> chiffre ces connexions avec <strong>TLS</strong>.
+            </p>
+            <div class="project-tags">
+              <span class="ref-badge">B1.5</span>
+              <span class="tag">Port 21</span>
+              <span class="tag">Mode passif</span>
+              <span class="tag">TLS</span>
+              <span class="tag">Certificat</span>
+            </div>
+            <button class="project-expand-btn" data-toggle="project">Voir les détails <span class="chev">▾</span></button>
+            <div class="project-details">
+              <div class="project-block">
+                <h4>Actif ou passif : qui ouvre la connexion de données ?</h4>
+                <div class="table-wrap">
+                  <table class="data-table">
+                    <thead><tr><th>Mode</th><th>Connexion de données</th><th>Conséquence</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>Actif</strong></td><td class="muted">Le <em>serveur</em> se connecte vers un port du client.</td><td class="muted">Bloqué par la box ou le pare-feu du client : inadapté pour des bénévoles à domicile.</td></tr>
+                      <tr><td><strong>Passif</strong></td><td class="muted">Le serveur annonce un port (commande PASV) ; le <em>client</em> s'y connecte.</td><td class="muted">Passe côté client. Il faut rediriger la plage passive côté serveur : mon choix.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="project-block">
+                <h4>Fonctionnement d'une session FTPS (explicite)</h4>
+                <ol class="fiche-steps">
+                  <li>Le client se connecte au port 21 et envoie <code class="inline">AUTH TLS</code>.</li>
+                  <li>Négociation TLS : le serveur présente son <strong>certificat</strong> (ici auto-signé, clé RSA 4096 bits), une clé de session est établie.</li>
+                  <li>Identifiant et mot de passe passent dans le tunnel chiffré (ils seraient lisibles en clair en FTP simple).</li>
+                  <li>Le serveur répond au PASV avec un port de la plage 49152–65534 ; la connexion de données est elle aussi chiffrée.</li>
+                </ol>
+              </div>
+              <div class="project-block">
+                <h4>Sécurité &amp; points de vigilance</h4>
+                <ul>
+                  <li><strong>Certificat auto-signé</strong> : le chiffrement est réel, mais le client affiche un avertissement car aucune autorité ne le garantit. Il faut donc expliquer aux utilisateurs comment vérifier son empreinte avant de l'accepter. Évolution possible : certificat Let's Encrypt.</li>
+                  <li>Derrière un NAT, le serveur doit annoncer son <strong>IP publique</strong> dans la réponse PASV (directive <code class="inline">MasqueradeAddress</code> de ProFTPD), sinon le client tente de joindre une IP privée.</li>
+                  <li>Ne pas confondre <strong>FTPS</strong> (FTP + TLS) et <strong>SFTP</strong> (transfert de fichiers dans SSH, un seul port).</li>
+                </ul>
+              </div>
+              <div class="project-block">
+                <h4>Questions possibles à l'oral</h4>
+                <dl class="fiche-qa">
+                  <dt>Pourquoi ne pas avoir choisi SFTP, plus simple à router ?</dt>
+                  <dd>SFTP n'utilise qu'un port et aurait été plus simple côté NAT. FTPS s'intègre directement au service FTP d'OpenMediaVault et reste compatible avec les clients FTP classiques ; SFTP reste une alternative valable que je pourrais proposer en évolution.</dd>
+                  <dt>Quelle différence entre FTPS explicite et implicite ?</dt>
+                  <dd>Explicite : connexion sur le port 21 puis passage en TLS par AUTH TLS. Implicite : TLS dès la connexion, sur le port 990.</dd>
+                </dl>
+              </div>
+            </div>
+          </article>
+
+          <!-- FICHE 4 — SSH -->
+          <article class="project fiche reveal">
+            <div class="project-head">
+              <div>
+                <p class="project-company">Fiche 04 · Couche 7 — Administration à distance</p>
+                <h3 class="project-title">SSH : connexion sécurisée &amp; durcissement</h3>
+              </div>
+              <div class="project-meta">Utilisé dans :<br>NAS (port 32770)<br>Stage SCLE (PAM)</div>
+            </div>
+            <p class="fiche-def">
+              <strong>SSH</strong> (Secure Shell, port 22 par défaut) ouvre un terminal chiffré sur une machine distante. Il permet aussi le transfert de fichiers (SCP, SFTP) et le tunneling.
+            </p>
+            <div class="project-tags">
+              <span class="ref-badge">B1.5</span>
+              <span class="ref-badge">B1.1</span>
+              <span class="tag">Clés asymétriques</span>
+              <span class="tag">sshd_config</span>
+              <span class="tag">PAM</span>
+            </div>
+            <button class="project-expand-btn" data-toggle="project">Voir les détails <span class="chev">▾</span></button>
+            <div class="project-details">
+              <div class="project-block">
+                <h4>Fonctionnement pas à pas</h4>
+                <ol class="fiche-steps">
+                  <li><strong>Échange de clés</strong> (Diffie-Hellman) : client et serveur calculent une clé de session commune sans jamais la transmettre.</li>
+                  <li><strong>Authentification du serveur</strong> : le client vérifie l'empreinte de la clé d'hôte (le message « The authenticity of host… » à la première connexion).</li>
+                  <li><strong>Authentification de l'utilisateur</strong> : par mot de passe, ou par <strong>paire de clés</strong> (clé publique déposée dans <code class="inline">~/.ssh/authorized_keys</code>, la clé privée reste chez l'utilisateur).</li>
+                  <li>Toute la session est ensuite chiffrée de façon symétrique (AES, ChaCha20).</li>
+                </ol>
+              </div>
+              <div class="project-block">
+                <h4>Mise en œuvre &amp; durcissement</h4>
+                <ul>
+                  <li><strong>NAS</strong> : port non standard 32770 redirigé sur la Freebox, utilisateur dédié <code class="inline">omvssh</code> (pas de connexion directe en root).</li>
+                  <li><strong>SCLE</strong> : restriction horaire via <strong>PAM</strong> (<code class="inline">pam_time</code>) qui s'applique aussi bien en local qu'en SSH pour le groupe <em>interns</em>.</li>
+                  <li>Bonnes pratiques : <code class="inline">PermitRootLogin no</code>, authentification par clé et <code class="inline">PasswordAuthentication no</code>, fail2ban contre la force brute.</li>
+                </ul>
+              </div>
+              <div class="project-block">
+                <h4>Questions possibles à l'oral</h4>
+                <dl class="fiche-qa">
+                  <dt>Changer le port SSH, est-ce une vraie sécurité ?</dt>
+                  <dd>Non, c'est de la réduction de bruit : cela évite les scans automatiques sur le 22. Un attaquant ciblé trouvera le port avec un scan. La sécurité vient de l'authentification par clé et des restrictions.</dd>
+                  <dt>Quelle différence entre chiffrement symétrique et asymétrique ici ?</dt>
+                  <dd>L'asymétrique (clés publique/privée) sert à authentifier et à établir la clé de session ; le symétrique, plus rapide, chiffre ensuite tout le trafic.</dd>
+                </dl>
+              </div>
+            </div>
+          </article>
+
+          <!-- FICHE 5 — ROUTAGE -->
+          <article class="project fiche reveal">
+            <div class="project-head">
+              <div>
+                <p class="project-company">Fiche 05 · Couche 3 — Réseau</p>
+                <h3 class="project-title">Table de routage &amp; passerelle par défaut</h3>
+              </div>
+              <div class="project-meta">Utilisé dans :<br>TP GLPI — ticket<br>« Manque d'internet depuis 3h »</div>
+            </div>
+            <p class="fiche-def">
+              La <strong>table de routage</strong> indique à une machine par où envoyer chaque paquet selon sa destination. La <strong>route par défaut</strong> (<code class="inline">0.0.0.0/0</code>) s'applique à tout ce qui n'a pas de route plus précise : en pratique, Internet, via la <strong>passerelle</strong>.
+            </p>
+            <div class="project-tags">
+              <span class="ref-badge">B1.2</span>
+              <span class="tag">route print</span>
+              <span class="tag">Passerelle</span>
+              <span class="tag">Masque</span>
+              <span class="tag">Diagnostic</span>
+            </div>
+            <button class="project-expand-btn" data-toggle="project">Voir les détails <span class="chev">▾</span></button>
+            <div class="project-details">
+              <div class="project-block">
+                <h4>Fonctionnement pas à pas</h4>
+                <ol class="fiche-steps">
+                  <li>Le poste compare l'IP de destination avec chaque route de sa table, en appliquant les masques.</li>
+                  <li>Il retient la route la plus précise (le <strong>plus long préfixe</strong> correspondant).</li>
+                  <li>Si la destination est dans le réseau local, le paquet est envoyé directement (résolution ARP de la machine).</li>
+                  <li>Sinon, il part vers la passerelle par défaut, qui le transmet au routeur suivant.</li>
+                </ol>
+              </div>
+              <div class="project-block">
+                <h4>Mise en œuvre — démarche de diagnostic (ticket GLPI)</h4>
+                <ul>
+                  <li><strong>Symptôme</strong> : réseau local joignable, mais plus d'accès à Internet.</li>
+                  <li><strong>Démarche par couches</strong> : <code class="inline">ipconfig</code> (adresse correcte ?) → <code class="inline">ping</code> de la passerelle → <code class="inline">ping 8.8.8.8</code> (Internet en IP ?) → <code class="inline">nslookup</code> (DNS ?) → <code class="inline">route print</code>.</li>
+                  <li><strong>Cause</strong> : route par défaut absente ou erronée.</li>
+                  <li><strong>Correction</strong> : <code class="inline">route delete 0.0.0.0</code> puis <code class="inline">route add 0.0.0.0 mask 0.0.0.0 &lt;IP_passerelle&gt;</code>, puis validation par l'utilisateur et clôture du ticket.</li>
+                </ul>
+              </div>
+              <div class="project-block">
+                <h4>Questions possibles à l'oral</h4>
+                <dl class="fiche-qa">
+                  <dt>Le ping vers 8.8.8.8 marche mais pas vers google.com : où est le problème ?</dt>
+                  <dd>Au niveau DNS : la connectivité IP fonctionne mais la résolution de noms échoue. Il faut vérifier les serveurs DNS configurés.</dd>
+                  <dt>Comment rendre une route permanente sous Windows ?</dt>
+                  <dd>Avec l'option <code class="inline">-p</code> : <code class="inline">route -p add …</code>. Sans elle, la route disparaît au redémarrage.</dd>
+                </dl>
+              </div>
+            </div>
+          </article>
+
+          <!-- FICHE 6 — RAID & ACL -->
+          <article class="project fiche reveal">
+            <div class="project-head">
+              <div>
+                <p class="project-company">Fiche 06 · Stockage &amp; droits d'accès</p>
+                <h3 class="project-title">RAID &amp; ACL POSIX</h3>
+              </div>
+              <div class="project-meta">Utilisé dans :<br>NAS Détours en Cinécourt</div>
+            </div>
+            <p class="fiche-def">
+              Le <strong>RAID</strong> combine plusieurs disques pour gagner en capacité, en performance ou en tolérance de panne. Les <strong>ACL POSIX</strong> complètent les droits Linux classiques (propriétaire / groupe / autres) en donnant des droits précis à plusieurs groupes sur un même dossier.
+            </p>
+            <div class="project-tags">
+              <span class="ref-badge">B1.1</span>
+              <span class="ref-badge">B1.5</span>
+              <span class="tag">mdadm</span>
+              <span class="tag">setfacl / getfacl</span>
+            </div>
+            <button class="project-expand-btn" data-toggle="project">Voir les détails <span class="chev">▾</span></button>
+            <div class="project-details">
+              <div class="project-block">
+                <h4>Comparatif des niveaux de RAID</h4>
+                <div class="table-wrap">
+                  <table class="data-table">
+                    <thead><tr><th>Niveau</th><th>Principe</th><th>Disques min.</th><th>Capacité utile</th><th>Tolérance de panne</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>RAID 0</strong></td><td class="muted">Données réparties (striping)</td><td class="muted">2</td><td class="muted">100 %</td><td class="muted">Aucune</td></tr>
+                      <tr><td><strong>RAID 1</strong></td><td class="muted">Copie miroir</td><td class="muted">2</td><td class="muted">50 %</td><td class="muted">1 disque</td></tr>
+                      <tr><td><strong>RAID 5</strong></td><td class="muted">Répartition + parité</td><td class="muted">3</td><td class="muted">(n−1) disques</td><td class="muted">1 disque</td></tr>
+                      <tr><td><strong>RAID 10</strong></td><td class="muted">Miroirs agrégés</td><td class="muted">4</td><td class="muted">50 %</td><td class="muted">1 disque par miroir</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="project-block">
+                <h4>Mise en œuvre dans le NAS</h4>
+                <ul>
+                  <li>RAID 0 via <code class="inline">mdadm</code> sur 2 × 3,6 To, soit 7,3 To en ext4 : capacité maximale pour stocker plus de 1 000 courts-métrages.</li>
+                  <li>ACL (équivalent en ligne de commande) : <code class="inline">setfacl -m g:read:rx</code> (lecture seule) et <code class="inline">setfacl -m g:writeread:rwx</code> (lecture/écriture), plus des ACL par défaut (<code class="inline">-d</code>) pour que les nouveaux fichiers en héritent.</li>
+                </ul>
+              </div>
+              <div class="project-block">
+                <h4>Questions possibles à l'oral</h4>
+                <dl class="fiche-qa">
+                  <dt>Le RAID est-il une sauvegarde ?</dt>
+                  <dd>Non. Le RAID protège (sauf RAID 0) contre la panne d'un disque, mais pas contre une suppression, un rançongiciel ou un incendie. Une sauvegarde suit la règle 3-2-1 : 3 copies, 2 supports, 1 hors site.</dd>
+                  <dt>Pourquoi des ACL plutôt que les droits classiques ?</dt>
+                  <dd>Les droits classiques ne gèrent qu'un seul groupe par dossier. Il en fallait deux avec des droits différents sur le même dossier.</dd>
+                </dl>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
@@ -1652,6 +2163,40 @@
               <li>Tests et benchmarks des modèles récents.</li>
               <li>Impact des nouvelles architectures sur les performances en jeu.</li>
             </ul>
+          </div>
+
+          <!-- ========== MÉTHODOLOGIE DE VEILLE ========== -->
+          <div class="veille-card reveal">
+            <h3>Méthodologie de veille</h3>
+
+            <h4>Démarche en 4 étapes</h4>
+            <ol class="fiche-steps">
+              <li><strong>Collecter</strong> : flux RSS des sites spécialisés regroupés dans un agrégateur, alertes Google sur des mots-clés précis (<code class="inline">Ryzen X3D</code>, <code class="inline">Core Ultra</code>, <code class="inline">microcode Intel</code>, <code class="inline">NPU desktop</code>), pages presse d'AMD et d'Intel.</li>
+              <li><strong>Trier et vérifier</strong> : une information n'est retenue que si elle est confirmée par une source officielle (constructeur) ou par au moins deux médias spécialisés. Les rumeurs de fuite sont notées à part, jamais présentées comme des faits.</li>
+              <li><strong>Analyser</strong> : pour chaque annonce, je note la date, la source, ce qui change techniquement et l'impact concret (performance, prix, compatibilité, fiabilité).</li>
+              <li><strong>Capitaliser et diffuser</strong> : mise à jour de la chronologie de ce portfolio et de la synthèse des tendances ci-dessous.</li>
+            </ol>
+
+            <h4>Outils utilisés</h4>
+            <ul>
+              <li><strong>Agrégateur RSS</strong> (Feedly) : centralise les flux des sites suivis.</li>
+              <li><strong>Google Alertes</strong> : notification par e-mail sur les mots-clés.</li>
+              <li><strong>Pages presse constructeurs</strong> et communautés (Intel Community, forums matériel) pour les communiqués et les retours d'utilisateurs.</li>
+              <li><strong>Fréquence</strong> : consultation hebdomadaire, lecture approfondie lors des lancements de nouvelles générations.</li>
+            </ul>
+
+            <h4>Sources classées par fiabilité</h4>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Source</th><th>Type</th><th>Usage</th><th>Fiabilité</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>AMD · Intel</strong></td><td class="muted">Officielle constructeur</td><td class="muted">Caractéristiques, dates, communiqués</td><td class="muted">★★★ (mais discours commercial)</td></tr>
+                  <tr><td><strong>Tom's Hardware</strong></td><td class="muted">Presse spécialisée</td><td class="muted">Tests, benchmarks, analyses</td><td class="muted">★★★</td></tr>
+                  <tr><td><strong>PC Gamer · Club386</strong></td><td class="muted">Presse spécialisée</td><td class="muted">Tests en jeu, suivi des correctifs</td><td class="muted">★★☆</td></tr>
+                  <tr><td><strong>Materiel-Gamer · Pause Hardware</strong></td><td class="muted">Sites comparatifs FR</td><td class="muted">Guides d'achat, classements</td><td class="muted">★★☆ (à recouper)</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
 
           <!-- ========== CHRONOLOGIE ========== -->
@@ -1782,6 +2327,98 @@
               </div>
             </div>
 
+          </div>
+
+
+          <!-- ========== ANALYSE DES TENDANCES ========== -->
+          <div class="veille-card reveal">
+            <h3>Analyse : les 4 tendances qui ressortent</h3>
+            <div class="veille-grid">
+              <div class="veille-mini">
+                <h5>1. Le cache avant la fréquence</h5>
+                <p>Le 9800X3D domine le jeu avec une fréquence plus basse que ses concurrents : la quantité de cache L3 réduit les accès à la RAM, et c'est ce qui limite les jeux. L'empilement 3D devient l'argument principal en gaming.</p>
+              </div>
+              <div class="veille-mini">
+                <h5>2. L'IA locale entre dans le CPU</h5>
+                <p>Ryzen 8000G puis Core Ultra intègrent un NPU. Il soulage le CPU et le GPU pour les tâches d'IA (flou d'arrière-plan, transcription, assistants). Microsoft exige un NPU de 40 TOPS minimum pour le label Copilot+ PC.</p>
+              </div>
+              <div class="veille-mini">
+                <h5>3. La fiabilité devient un critère</h5>
+                <p>La saga Raptor Lake (4 microcodes en un an) montre qu'un processeur peut se dégrader à cause de son firmware. Mettre à jour le BIOS n'est plus optionnel.</p>
+              </div>
+              <div class="veille-mini">
+                <h5>4. La pérennité de la plateforme</h5>
+                <p>AM5, supporté au moins jusqu'en 2027, permet de changer de processeur sans changer de carte mère. Intel a changé de socket (LGA 1851) avec Arrow Lake. Le coût total d'une évolution en dépend.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ========== LIEN AVEC LE MÉTIER SISR ========== -->
+          <div class="veille-card reveal">
+            <h3>Ce que cette veille m'apporte en tant que technicien SISR</h3>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Information de veille</th><th>Application concrète en entreprise</th><th>Bloc</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td>Instabilité des Core 13ᵉ/14ᵉ gen, correctifs microcode</td>
+                    <td class="muted">Repérer les postes concernés grâce à l'inventaire automatique de l'agent GLPI (modèle de CPU remonté), planifier la mise à jour du BIOS, faire jouer l'extension de garantie de 2 ans.</td>
+                    <td><span class="ref-badge">B1.1</span></td>
+                  </tr>
+                  <tr>
+                    <td>Plantages aléatoires en charge</td>
+                    <td class="muted">Ajouter « version du BIOS / microcode » au diagnostic d'un ticket avant de remplacer du matériel.</td>
+                    <td><span class="ref-badge">B1.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>NPU et Copilot+ PC, pérennité AM5 / LGA 1851</td>
+                    <td class="muted">Rédiger un cahier des charges de renouvellement de parc adapté aux usages et à la durée de vie attendue des postes.</td>
+                    <td><span class="ref-badge">B1.1</span></td>
+                  </tr>
+                  <tr>
+                    <td>Efficacité énergétique (Zen 5 à 65 W)</td>
+                    <td class="muted">Prendre en compte la consommation et la chauffe dans le choix des postes et des petits serveurs (démarche Green IT).</td>
+                    <td><span class="ref-badge">B1.5</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ========== COMPÉTENCE B1.6 ========== -->
+          <div class="veille-card reveal">
+            <h3>Compétence B1.6 — Organiser son développement professionnel</h3>
+            <div class="veille-grid">
+              <div class="veille-mini">
+                <span class="ref-badge">Veille informationnelle</span>
+                <p>Outils (RSS, alertes) et méthode en 4 étapes décrits plus haut ; sources classées et recoupées ; chronologie sourcée et datée.</p>
+              </div>
+              <div class="veille-mini">
+                <span class="ref-badge">Environnement d'apprentissage</span>
+                <p>Travail personnel en dehors des cours : administration Linux avancée (Auditd, PAM, Cron) pendant le stage SCLE, lab de virtualisation pour les TP.</p>
+              </div>
+              <div class="veille-mini">
+                <span class="ref-badge">Identité professionnelle</span>
+                <p>Ce portfolio en ligne, maintenu à jour, avec rapports et documents téléchargeables.</p>
+              </div>
+              <div class="veille-mini">
+                <span class="ref-badge">Projet professionnel</span>
+                <p>La veille est directement liée à mon objectif : me spécialiser dans le hardware et l'optimisation des performances.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ========== BILAN ========== -->
+          <div class="veille-card reveal">
+            <h3>Bilan personnel</h3>
+            <p>
+              Cette veille m'a appris à <strong>ne pas me fier à une seule source</strong> : les annonces des constructeurs et les tests indépendants racontent parfois deux histoires différentes, comme lors du lancement d'Arrow Lake. Elle m'a aussi montré qu'un sujet « gaming » rejoint directement le quotidien d'un administrateur : mise à jour des firmwares, gestion des garanties, choix du matériel lors d'un renouvellement de parc.
+            </p>
+            <h4>Prochaines étapes</h4>
+            <ul>
+              <li>Continuer la chronologie avec les prochaines générations annoncées par AMD et Intel.</li>
+              <li>Élargir la veille aux processeurs serveur (AMD EPYC, Intel Xeon) pour le lien avec la virtualisation.</li>
+            </ul>
           </div>
 
         </div>
